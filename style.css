@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
 Scrie un CSS modern și responsive pentru pagina de test psihologic Nebshome.
 Folosește fundal bej deschis (#fcf8f3), text centrat, padding mare, colțuri rotunjite, box shadow estetic.
@@ -49,3 +50,35 @@ p {
 .start-button:hover {
   background-color: #005f99;
 }
+=======
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    margin-top: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h1, h2 {
+    color: #333;
+}
+.start-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007acc;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.start-button:hover {
+    background: #005f99;
+}
+body { background-color: #fdf6ee; }
+>>>>>>> da57bf2179a2519bc79df8381e2200d5d214b93c
