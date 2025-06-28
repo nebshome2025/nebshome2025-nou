@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nebshome — Тест жилья</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Nebshome — Тест</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Nebshome — Твой психологический тест жилья</h1>
-        <p>Пройди тест и узнай, какой тип дома подходит именно тебе.</p>
-        <a href="test.html" class="start-button">Начать тест</a>
+        <h2>Ответь на все вопросы:</h2>
+
+        <div class="question">
+            <p>1. Как ты обычно проводишь выходные?</p>
+            <label><input type="radio" name="q1" value="1" /> Я провожу выходные активно...</label>
+            <label><input type="radio" name="q1" value="2" /> Для меня важно проводить время с семьей...</label>
+            <label><input type="radio" name="q1" value="3" /> Я стараюсь выезжать на природу...</label>
+            <label><input type="radio" name="q1" value="4" /> Выходные — это время для уборки...</label>
+            <label><input type="radio" name="q1" value="5" /> Я предпочитаю одиночество...</label>
+        </div>
+
+        <!-- Adaugă și celelalte întrebări în același mod -->
+
+        <button type="submit">Завершить тест</button>
     </div>
 </body>
 </html>
