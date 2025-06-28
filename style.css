@@ -1,79 +1,33 @@
-/* Stiluri generale, aplicate implicit (Mobile-First) */
-* {
-  box-sizing: border-box;
+body {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 10px;
   margin: 0;
-  padding: 0;
 }
 
-body, html {
-  height: 100%;
-  font-family: "Segoe UI", "Roboto", sans-serif;
-  background-color: #fcf8f3;
+label {
+  display: block;
+  margin-bottom: 10px;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Aliniaza sus pe mobil */
-  padding: 20px;
-  min-height: 100vh;
-  padding-top: 10vh; /* Adăugăm un padding-top pentru a-l coborî puțin de sus */
-}
-
-.container {
-  background: white;
-  padding: 20px; /* Padding mai mic pentru mobil */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 90%; /* Ocupă 90% din lățimea disponibilă */
-  max-width: 400px; /* Limită maximă pentru desktop, dar fluid pe mobil */
-  text-align: center;
-}
-
-h1 {
-  font-size: 22px;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-p {
-  font-size: 16px;
+.question {
   margin-bottom: 25px;
-  color: #555;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.start-button {
-  background-color: #007acc;
-  color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  display: inline-block;
+input[type="radio"] {
+  margin-right: 10px;
 }
 
-.start-button:hover {
-  background-color: #0056b3;
-}
-
-/* Media Query pentru ecrane mai mari (Tablete și Desktop) */
-@media only screen and (min-width: 768px) {
-  .wrapper {
-    align-items: center; /* Centrează vertical pe ecrane mari */
-    padding-top: 0; /* Elimină padding-top-ul de pe mobil */
+@media (max-width: 600px) {
+  body {
+    font-size: 17px;
+    padding: 15px;
   }
 
-  .container {
-    padding: 30px; /* Padding original pentru desktop */
-    max-width: 400px; /* Revine la max-width specific pentru desktop */
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  p {
+  .question {
     font-size: 18px;
   }
 }
