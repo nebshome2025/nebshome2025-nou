@@ -1,89 +1,74 @@
-/* 
-Design modern și relaxant pentru testul Nebshome:
-- Fundal crem elegant (#fefcf9)
-- Font clar și aerisit
-- Întrebări mari și ușor de citit
-- Container centrat cu umbră subtilă
-*/
+/* Design modern și relaxant pentru testul Nebshome */
 
 body {
-  background-color: #fefcf9;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f9f5ec; /* Bej deschis */
+  color: #333;
+  font-family: Arial, sans-serif;
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0;
   padding: 20px;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  min-height: 100vh;
-}
-
-.container {
-  background-color: white;
-  padding: 30px;
-  max-width: 700px;
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  box-sizing: border-box;
-}
-
-h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #222;
 }
 
-.question {
-  margin-bottom: 25px;
-  font-size: 20px;
-  font-weight: bold;
+/* Container principal */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+/* Întrebări */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 
+.question {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Stil radio buttons */
 input[type="radio"] {
   margin-right: 10px;
   transform: scale(1.2);
 }
 
+/* Buton Start */
 .start-button {
-  display: block;
-  margin: 30px auto 0;
+  background-color: #4a90e2;       /* albastru calm */
+  color: #fff;
   padding: 12px 24px;
   font-size: 18px;
-  background-color: #333;
-  color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 30px;
 }
 
 .start-button:hover {
-  background-color: #555;
+  background-color: #357ABD;
 }
 
-/* Responsiv pentru mobil */
+/* Responsive pentru mobil */
 @media (max-width: 600px) {
   body {
     padding: 10px;
-  }
-
-  .container {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .question {
@@ -91,6 +76,7 @@ input[type="radio"] {
   }
 
   .start-button {
-    width: 100%;
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
