@@ -1,82 +1,44 @@
-/* Design modern și relaxant pentru testul Nebshome */
-
 body {
-  background-color: #f9f5ec; /* Bej deschis */
-  color: #333;
-  font-family: Arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f5ec;
+  color: #333;
   text-align: center;
 }
 
-/* Container principal */
 .container {
   max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 30px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  text-align: left;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-/* Întrebări */
-h2 {
-  font-size: 24px;
+h1 {
+  font-size: 26px;
+  font-weight: 700;
   margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.question {
-  margin-bottom: 30px;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-/* Stil radio buttons */
-input[type="radio"] {
-  margin-right: 10px;
-  transform: scale(1.2);
-}
-
-/* Buton Start */
-.start-button {
-  background-color: #4a90e2;       /* albastru calm */
-  color: #fff;
-  padding: 12px 24px;
+p {
   font-size: 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.start-button {
   display: inline-block;
-  margin-top: 30px;
+  padding: 14px 24px;
+  background-color: #4285f4;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .start-button:hover {
-  background-color: #357ABD;
-}
-
-/* Responsive pentru mobil */
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  .question {
-    font-size: 18px;
-  }
-
-  .start-button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
+  background-color: #2f6de0;
 }
