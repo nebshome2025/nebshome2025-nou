@@ -1,9 +1,11 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #f4f1eb;
   color: #333;
-  font-size: 18px; /* Text de bază mai mare */
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .container {
@@ -12,40 +14,26 @@ body {
   padding: 20px;
 }
 
-.question {
-  margin-bottom: 40px;
+.intro {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
 }
 
-.question-title {
-  font-size: 20px;
+h1 {
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
-.answers {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.answers li {
-  margin-bottom: 10px;
+p {
   font-size: 18px;
+  margin-bottom: 30px;
 }
 
-input[type="radio"] {
-  transform: scale(1.3);
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-label {
-  display: inline-block;
-  line-height: 1.5;
-  cursor: pointer;
-}
-
-.submit-button {
+.start-button {
   display: inline-block;
   background-color: #d8b59c;
   color: white;
@@ -54,25 +42,59 @@ label {
   font-size: 17px;
   border-radius: 10px;
   border: none;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #caa68c;
+}
+
+.question-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.answers li {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+input[type="radio"] {
+  transform: scale(1.3);
+  margin-right: 10px;
+}
+
+.submit-button {
+  background-color: #d8b59c;
+  color: white;
+  padding: 14px 28px;
+  font-size: 17px;
+  border-radius: 10px;
+  border: none;
   margin-top: 30px;
   cursor: pointer;
+  display: inline-block;
 }
 
 .submit-button:hover {
-  background-color: #c49e86;
+  background-color: #caa68c;
 }
 
-/* Pe mobil, text mai mare și padding optimizat */
 @media (max-width: 600px) {
   .container {
     padding: 16px;
   }
 
-  .question-title {
+  h1 {
     font-size: 22px;
   }
 
+  .question-title {
+    font-size: 20px;
+  }
+
   .answers li {
-    font-size: 19px;
+    font-size: 18px;
   }
 }
