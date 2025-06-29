@@ -1,70 +1,53 @@
-/* Fundal crem și font modern */
 body {
   background-color: #f4f1eb;
   font-family: 'Inter', sans-serif;
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0;
-  padding: 20px;
-  color: #333;
+  padding: 0;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   min-height: 100vh;
 }
 
 .container {
   background-color: #ffffff;
   padding: 30px;
-  max-width: 700px;
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  box-sizing: border-box;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #222;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #2d2d2d;
 }
 
 p {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 18px;
-  color: #555;
+  font-size: 16px;
+  color: #4f4f4f;
+  margin-bottom: 24px;
 }
 
 .start-button {
-  display: block;
-  width: fit-content;
-  margin: 0 auto;
-  padding: 12px 28px;
-  font-size: 18px;
   background-color: #d8b59c;
-  color: #fff;
+  color: white;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  display: inline-block;
 }
 
 .start-button:hover {
-  background-color: #c89d82;
-}
-
-/* Responsivitate */
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-  h1 {
-    font-size: 22px;
-  }
-  .start-button {
-    width: 100%;
-    text-align: center;
-  }
+  background-color: #caa385;
 }
