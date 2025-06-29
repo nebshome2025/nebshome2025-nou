@@ -1,100 +1,52 @@
-/* Stil modern pentru Nebshome */
 body {
-  background-color: #f4f1eb;
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
   margin: 0;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f1eb;
+  color: #333;
 }
 
 .container {
-  background-color: #ffffff;
-  padding: 30px;
-  max-width: 700px;
-  width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 30px;
+.intro-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
   text-align: center;
 }
 
-.question {
-  margin-bottom: 30px;
+.intro-card h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.4;
 }
 
-.question p {
-  font-weight: 600;
+.intro-card p {
   font-size: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
+  line-height: 1.5;
 }
 
-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  font-weight: 400;
-  font-size: 17px;
-}
-
-input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #999;
-  border-radius: 50%;
-  position: relative;
-  top: 4px;
-  cursor: pointer;
-  transition: border 0.3s ease;
-}
-
-input[type="radio"]:checked {
-  border: 6px solid #d8b59c;
-}
-
-button {
+.start-button {
+  display: inline-block;
   background-color: #d8b59c;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background 0.3s ease;
-  width: 100%;
-  max-width: 300px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px;
+  font-size: 17px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #c6a283;
-}
-
-/* Responsive text pe mobil */
-@media (max-width: 480px) {
-  body {
-    font-size: 20px;
-  }
-
-  .question p {
-    font-size: 19px;
-  }
-
-  label {
-    font-size: 18px;
-  }
+.start-button:hover {
+  background-color: #c49e86;
 }
