@@ -2,41 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nebshome — Selectează limba</title>
+    <title>Test Nebshome - Selectează limba</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             background-color: #f4f1eb;
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            font-size: 20px;
             text-align: center;
-            padding-top: 100px;
+            padding: 40px 20px;
         }
+
         h1 {
             font-size: 26px;
             margin-bottom: 40px;
+            font-weight: bold;
         }
+
         .lang-select a {
             display: block;
-            margin: 10px auto;
-            padding: 12px 24px;
-            width: 200px;
-            background: #d8b59c;
+            background-color: #d8b59c;
             color: white;
+            padding: 14px;
+            margin: 10px auto;
+            width: 200px;
+            border-radius: 10px;
             text-decoration: none;
-            border-radius: 8px;
             font-size: 18px;
+            transition: background-color 0.3s ease;
         }
+
         .lang-select a:hover {
-            background: #caa68c;
+            background-color: #caa68c;
         }
     </style>
 </head>
 <body>
+
     <h1>Selectează limba / Выберите язык / Select your language</h1>
+
     <div class="lang-select">
-        <a href="ro/">Română</a>
-        <a href="ru/">Русский</a>
-        <a href="en/">English</a>
+        <a href="RO/index.html">Română</a>
+        <a href="RU/index.html">Русский</a>
+        <!-- Dacă ai și limba engleză -->
+        <!-- <a href="EN/index.html">English</a> -->
     </div>
+
 </body>
 </html>
