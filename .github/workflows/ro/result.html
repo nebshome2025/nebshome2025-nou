@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezultatul tău Nebshome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="resultContent"></div>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const profile = params.get("profile");
+
+        const profileData = {
+            "explorer": {
+                "title": "Profilul tău: Explorator Urban",
+                "description": `
+        Ești o persoană activă, mereu în mișcare și în căutare de experiențe noi. Îți place să fii în centrul acțiunii, aproape de oameni și locuri interesante. Izolarea și liniștea nu sunt pentru tine.
+
+        Locuința ideală pentru tine:
+        Un apartament modern în centru sau aproape de infrastructura activă. Ferestre panoramice, spațiu luminos și planificare funcțională sunt ideale.
+
+        Acordă atenție la:
+        - Locație apropiată de cafenele, parcuri, transport.
+        - Plan deschis, lumină naturală.
+        - Îmbinarea energiei orașului cu confort personal.
+
+        Sfat personal:
+        Casa ta trebuie să te inspire și să te încarce. Alege un loc care susține ritmul tău de viață.
+                `
+            },
+            "family": {
+                "title": "Profilul tău: Familist Structurat",
+                "description": `
+        Apreciezi stabilitatea, ordinea și grija față de cei dragi. Casa înseamnă siguranță, confort și spațiu pentru familie.
+
+        Locuința ideală pentru tine:
+        Un apartament spațios sau o casă într-o zonă liniștită, aproape de grădinițe, școli și magazine. Camere bine organizate pentru toți membrii familiei.
+
+        Acordă atenție la:
+        - Gândește pe termen lung: va fi potrivit și peste 5 ani?
+        - Verifică vecinii și infrastructura.
+        - Funcționalitate și logică sunt prioritare.
+
+        Sfat personal:
+        Casa trebuie să fie o fortăreață a familiei, unde fiecare să-și găsească locul și liniștea.
+                `
+            },
+            "dreamer": {
+                "title": "Profilul tău: Visător Natural",
+                "description": `
+        Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Spațiul tău reflectă calmul interior.
+
+        Locuința ideală pentru tine:
+        Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante, spații deschise și luminoase.
+
+        Acordă atenție la:
+        - Evită interioarele reci și încărcate.
+        - Creează colțuri pentru liniște și creație.
+        - Observă cum te simți în acel loc.
+
+        Sfat personal:
+        Casa ta trebuie să fie sursă de energie și inspirație, nu doar un adăpost.
+                `
+            },
+            "minimal": {
+                "title": "Profilul tău: Minimalist Conștient",
+                "description": `
+        Apreciezi simplitatea, curățenia și ordinea. Spațiul tău trebuie să fie liber, funcțional și aerisit.
+
+        Locuința ideală pentru tine:
+        O garsonieră practică sau un apartament cu planificare clară. Tonuri deschise, mobilier minim și eficiență maximă.
+
+        Acordă atenție la:
+        - Elimină tot ce este inutil, concentrează-te pe esențial.
+        - Caută flexibilitate și ergonomie.
+        - Simplitatea să lucreze în favoarea ta.
+
+        Sfat personal:
+        Casa reflectă mintea. Menține claritatea și echilibrul interior prin spațiul tău.
+                `
+            },
+            "introvert": {
+                "title": "Profilul tău: Retras Reflexiv",
+                "description": `
+        Ești o persoană retrasă, introspectivă. Apreciezi liniștea, pacea și spațiul personal. Te obosește comunicarea excesivă și agitația.
+
+        Locuința ideală pentru tine:
+        Un apartament sau o casă într-un loc retras, cu izolare fonică bună. Un birou sau colț personal este un mare avantaj.
+
+        Acordă atenție la:
+        - Intimitate și distanțare de aglomerație.
+        - Sunet și compartimentare pentru liniște.
+        - Confort personal și loc de retragere.
+
+        Sfat personal:
+        Creează-ți un refugiu care să te calmeze și să-ți susțină ritmul propriu de viață.
+                `
+            }
+        };
+
+        const result = profileData[profile];
+
+        if (result) {
+            document.getElementById("resultContent").innerHTML = `
+                <h1>${result.title}</h1>
+                <pre>${result.description}</pre>
+            `;
+        } else {
+            document.getElementById("resultContent").innerHTML = "<p>Profil necunoscut.</p>";
+        }
+    </script>
+</body>
+</html>
