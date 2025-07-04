@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Nebshome Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="resultContent"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const profile = params.get("profile");
+
+        const profileData = {
+            "explorer": {
+                "title": "Your Profile: Urban Explorer",
+                "description": `
+You are an active person, always on the move and looking for new experiences. You want to live close to the action, surrounded by people and energy.
+
+Ideal home for you:
+A modern apartment in the city center or near active infrastructure. Panoramic windows, bright spaces and an open layout will fit you best.
+
+Pay attention to:
+- Location near cafes, parks, and public transport.
+- Open-plan layout with natural light.
+- A mix of city energy and personal comfort.
+
+Personal advice:
+Choose a place that energizes and inspires you to keep your dynamic rhythm.
+                `
+            },
+            "family": {
+                "title": "Your Profile: Structured Family Person",
+                "description": `
+You value stability, order and caring for your loved ones. Home is a place of warmth, safety and space for your family.
+
+Ideal home for you:
+A spacious apartment or house in a quiet area, close to schools, kindergartens, and stores. The layout should be practical and organized.
+
+Pay attention to:
+- Long-term convenience for the next 5+ years.
+- Neighbors and overall environment.
+- Functionality and logic in layout.
+
+Personal advice:
+Your home should be your family’s fortress – where everyone has space and comfort.
+                `
+            },
+            "dreamer": {
+                "title": "Your Profile: Nature Dreamer",
+                "description": `
+You are a sensitive, intuitive person. Harmony, beauty, and a connection with nature are vital for your well-being.
+
+Ideal home for you:
+An apartment with views to greenery or a house outside the city. Natural materials, plants, light and airy rooms will support your energy.
+
+Pay attention to:
+- Avoid cold or overly modern interiors.
+- Include space for solitude and creativity.
+- Check the emotional atmosphere of the place.
+
+Personal advice:
+Your home should be your personal sanctuary – restoring and uplifting you daily.
+                `
+            },
+            "minimal": {
+                "title": "Your Profile: Conscious Minimalist",
+                "description": `
+You appreciate simplicity, order and clarity. Your ideal space is functional, calm, and free of clutter.
+
+Ideal home for you:
+A compact studio or smart apartment with a clear layout. Bright tones, minimal furniture, and high usability.
+
+Pay attention to:
+- Eliminate unnecessary items.
+- Focus on flexibility and efficiency.
+- Let simplicity work for you.
+
+Personal advice:
+Your home reflects your mind. Let it support your focus and balance.
+                `
+            },
+            "introvert": {
+                "title": "Your Profile: Reflective Introvert",
+                "description": `
+You are introspective and thoughtful. Silence, peace and privacy are key for you. Too much noise or stimulation drains you.
+
+Ideal home for you:
+A quiet apartment or house, ideally away from noisy streets. A personal workspace or reading corner is a huge plus.
+
+Pay attention to:
+- Privacy and distance from crowded areas.
+- Sound insulation and calm surroundings.
+- Every detail should offer peace.
+
+Personal advice:
+Find a home that lets you be yourself. Outer calm will help unlock your inner potential.
+                `
+            }
+        };
+
+        if (profile && profileData[profile]) {
+            const content = profileData[profile];
+            document.getElementById("resultContent").innerHTML = `
+                <h2>${content.title}</h2>
+                <p>${content.description.replace(/\n/g, "<br>")}</p>
+            `;
+        } else {
+            document.getElementById("resultContent").innerHTML = "<p>Profile not defined. Please take the test again.</p>";
+        }
+    </script>
+</body>
+</html>
