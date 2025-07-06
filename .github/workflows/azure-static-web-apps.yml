@@ -23,3 +23,4 @@ jobs:
           app_location: "/"             # dacă index.html este în rădăcină
           api_location: ""              # dacă nu ai API
           output_location: ""           # dacă nu ai build (ex: React, Vue)
+# trigger build
