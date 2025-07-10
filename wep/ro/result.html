@@ -2,12 +2,37 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Rezultatul tău Nebshome</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Rezultatul Profilului</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 32px 24px;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        p {
+            color: #444;
+            line-height: 1.7;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div id="resultContent"></div>
+        <div id="resultContent">
+            <p>Se încarcă rezultatul...</p>
+        </div>
     </div>
     <script>
         const params = new URLSearchParams(window.location.search);
@@ -17,99 +42,98 @@
             "explorer": {
                 "title": "Profilul tău: Explorator Urban",
                 "description": `
-        Ești o persoană activă, mereu în mișcare și în căutare de experiențe noi. Îți place să fii în centrul acțiunii, aproape de oameni și locuri interesante. Izolarea și liniștea nu sunt pentru tine.
+Ești o persoană activă, mereu în mișcare și în căutare de experiențe noi. Îți place să fii în centrul evenimentelor, aproape de oameni și locuri interesante. Izolarea și liniștea completă nu sunt pentru tine.
 
-        Locuința ideală pentru tine:
-        Un apartament modern în centru sau aproape de infrastructura activă. Ferestre panoramice, spațiu luminos și planificare funcțională sunt ideale.
+Locuința ideală pentru tine:
+Un apartament modern în centru sau aproape de infrastructura activă. Ferestre panoramice, spațiu luminos și planificare funcțională — exact ce ai nevoie.
 
-        Acordă atenție la:
-        - Locație apropiată de cafenele, parcuri, transport.
-        - Plan deschis, lumină naturală.
-        - Îmbinarea energiei orașului cu confort personal.
+Acordă atenție la:
+- Locație apropiată de cafenele, parcuri, transport.
+- Plan deschis și lumină naturală.
+- Îmbinarea energiei orașului cu confort personal.
 
-        Sfat personal:
-        Casa ta trebuie să te inspire și să te încarce. Alege un loc care susține ritmul tău de viață.
+Sfat personal:
+Casa ta trebuie să te inspire și să te încarce. Alege un loc care susține ritmul tău de viață.
                 `
             },
             "family": {
                 "title": "Profilul tău: Familist Structurat",
                 "description": `
-        Apreciezi stabilitatea, ordinea și grija față de cei dragi. Casa înseamnă siguranță, confort și spațiu pentru familie.
+Apreciezi stabilitatea, ordinea și grija față de cei dragi. Casa este un spațiu de siguranță, căldură și confort pentru familie.
 
-        Locuința ideală pentru tine:
-        Un apartament spațios sau o casă într-o zonă liniștită, aproape de grădinițe, școli și magazine. Camere bine organizate pentru toți membrii familiei.
+Locuința ideală pentru tine:
+Un apartament spațios sau o casă într-o zonă liniștită, aproape de grădinițe, școli și magazine. Camere bine organizate pentru toți membrii familiei.
 
-        Acordă atenție la:
-        - Gândește pe termen lung: va fi potrivit și peste 5 ani?
-        - Verifică vecinii și infrastructura.
-        - Funcționalitate și logică sunt prioritare.
+Acordă atenție la:
+- Gândește-te pe termen lung: va fi confortabil și peste 5 ani?
+- Analizează vecinii și infrastructura.
+- Confort, logică și funcționalitate înainte de toate.
 
-        Sfat personal:
-        Casa trebuie să fie o fortăreață a familiei, unde fiecare să-și găsească locul și liniștea.
+Sfat personal:
+Casa trebuie să fie o fortăreață pentru familie, unde fiecare membru să-și găsească locul și echilibrul.
                 `
             },
             "dreamer": {
                 "title": "Profilul tău: Visător Natural",
                 "description": `
-        Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Spațiul tău reflectă calmul interior.
+Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Casa ta reflectă starea ta interioară.
 
-        Locuința ideală pentru tine:
-        Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante, spații deschise și luminoase.
+Locuința ideală pentru tine:
+Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spații luminoase și deschise.
 
-        Acordă atenție la:
-        - Evită interioarele reci și încărcate.
-        - Creează colțuri pentru liniște și creație.
-        - Observă cum te simți în acel loc.
+Acordă atenție la:
+- Evită interioarele reci și aglomerate.
+- Creează colțuri pentru retragere și creație.
+- Simte energia locului — cum te face să te simți?
 
-        Sfat personal:
-        Casa ta trebuie să fie sursă de energie și inspirație, nu doar un adăpost.
+Sfat personal:
+Locuința ta ar trebui să fie o sursă de energie care te sprijină și te inspiră zilnic.
                 `
             },
             "minimal": {
                 "title": "Profilul tău: Minimalist Conștient",
                 "description": `
-        Apreciezi simplitatea, curățenia și ordinea. Spațiul tău trebuie să fie liber, funcțional și aerisit.
+Apreciezi simplitatea, claritatea și ordinea. Spațiul tău trebuie să fie aerisit, funcțional și lipsit de elemente inutile.
 
-        Locuința ideală pentru tine:
-        O garsonieră practică sau un apartament cu planificare clară. Tonuri deschise, mobilier minim și eficiență maximă.
+Locuința ideală pentru tine:
+Un studio simplu sau un apartament cu plan clar. Tonuri deschise, mobilier minim și utilizare eficientă a spațiului.
 
-        Acordă atenție la:
-        - Elimină tot ce este inutil, concentrează-te pe esențial.
-        - Caută flexibilitate și ergonomie.
-        - Simplitatea să lucreze în favoarea ta.
+Acordă atenție la:
+- Elimină ce nu-ți folosește și concentrează-te pe esențial.
+- Caută flexibilitate și ergonomie.
+- Simplitatea trebuie să lucreze în favoarea ta.
 
-        Sfat personal:
-        Casa reflectă mintea. Menține claritatea și echilibrul interior prin spațiul tău.
+Sfat personal:
+Casa ta reflectă mintea ta. Las-o să susțină concentrarea și echilibrul interior.
                 `
             },
             "introvert": {
-                "title": "Profilul tău: Retras Reflexiv",
+                "title": "Profilul tău: Retraș Reflexiv",
                 "description": `
-        Ești o persoană retrasă, introspectivă. Apreciezi liniștea, pacea și spațiul personal. Te obosește comunicarea excesivă și agitația.
+Ești o persoană rezervată și profundă. Tăcerea, liniștea și intimitatea sunt prioritare pentru tine. Te obosește zgomotul și socializarea în exces.
 
-        Locuința ideală pentru tine:
-        Un apartament sau o casă într-un loc retras, cu izolare fonică bună. Un birou sau colț personal este un mare avantaj.
+Locuința ideală pentru tine:
+Un apartament sau o casă într-o zonă retrasă, cu izolare fonică bună. Prezența unui birou sau colț personal este un mare avantaj.
 
-        Acordă atenție la:
-        - Intimitate și distanțare de aglomerație.
-        - Sunet și compartimentare pentru liniște.
-        - Confort personal și loc de retragere.
+Acordă atenție la:
+- Intimitate și distanțare față de agitație.
+- Izolație fonică și planificare cu intimitate.
+- Confort și calm în fiecare detaliu.
 
-        Sfat personal:
-        Creează-ți un refugiu care să te calmeze și să-ți susțină ritmul propriu de viață.
+Sfat personal:
+Alege o locuință care îți permite să fii tu însuți. Liniștea din jur îți va activa potențialul interior.
                 `
             }
         };
 
-        const result = profileData[profile];
-
-        if (result) {
+        if (profile && profileData[profile]) {
+            const content = profileData[profile];
             document.getElementById("resultContent").innerHTML = `
-                <h1>${result.title}</h1>
-                <pre>${result.description}</pre>
+                <h2>${content.title}</h2>
+                <p>${content.description.replace(/\n/g, "<br>")}</p>
             `;
         } else {
-            document.getElementById("resultContent").innerHTML = "<p>Profil necunoscut.</p>";
+            document.getElementById("resultContent").innerHTML = "<p>Profilul nu a fost identificat. Te rugăm să refaci testul.</p>";
         }
     </script>
 </body>
