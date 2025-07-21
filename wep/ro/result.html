@@ -34,6 +34,7 @@
             <p>Se încarcă rezultatul...</p>
         </div>
     </div>
+
     <script>
         const params = new URLSearchParams(window.location.search);
         const profile = params.get("profile");
@@ -41,11 +42,10 @@
         const profileData = {
             "explorer": {
                 "title": "Profilul tău: Explorator Urban",
-                "description": `
-Ești o persoană activă, mereu în mișcare și în căutare de experiențe noi. Îți place să fii în centrul evenimentelor, aproape de oameni și locuri interesante. Izolarea și liniștea completă nu sunt pentru tine.
+                "description": `Ești o persoană activă, mereu în mișcare și în căutare de experiențe noi. Îți place să fii în centrul evenimentelor.
 
 Locuința ideală pentru tine:
-Un apartament modern în centru sau aproape de infrastructura activă. Ferestre panoramice, spațiu luminos și planificare funcțională — exact ce ai nevoie.
+Un apartament modern în centru sau aproape de infrastructură activă. Ferestre panoramice, spațiu luminos și planificare deschisă.
 
 Acordă atenție la:
 - Locație apropiată de cafenele, parcuri, transport.
@@ -53,33 +53,28 @@ Acordă atenție la:
 - Îmbinarea energiei orașului cu confort personal.
 
 Sfat personal:
-Casa ta trebuie să te inspire și să te încarce. Alege un loc care susține ritmul tău de viață.
-                `
+Casa ta trebuie să te inspire și să te încarce. Alege un loc care susține ritmul tău de viață.`
             },
             "family": {
                 "title": "Profilul tău: Familist Structurat",
-                "description": `
-Apreciezi stabilitatea, ordinea și grija față de cei dragi. Casa este un spațiu de siguranță, căldură și confort pentru familie.
+                "description": `Apreciezi stabilitatea, ordinea și grija față de cei dragi. Casa este un spațiu de siguranță, căldură și confort personal.
 
 Locuința ideală pentru tine:
-Un apartament spațios sau o casă într-o zonă liniștită, aproape de grădinițe, școli și magazine. Camere bine organizate pentru toți membrii familiei.
+Un apartament spațios sau o casă într-o zonă liniștită, aproape de grădinițe, școli și magazine. Camere bine organizate.
 
 Acordă atenție la:
 - Gândește-te pe termen lung: va fi confortabil și peste 5 ani?
 - Analizează vecinii și infrastructura.
-- Confort, logică și funcționalitate înainte de toate.
 
 Sfat personal:
-Casa trebuie să fie o fortăreață pentru familie, unde fiecare membru să-și găsească locul și echilibrul.
-                `
+Confort, logică și funcționalitate înainte de toate. Casa trebuie să fie o fortăreață pentru familie, unde fiecare membru să-și găsească locul și echilibrul.`
             },
             "dreamer": {
                 "title": "Profilul tău: Visător Natural",
-                "description": `
-Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Casa ta reflectă starea ta interioară.
+                "description": `Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Casa ta reflectă sufletul tău.
 
 Locuința ideală pentru tine:
-Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spații luminoase și deschise.
+Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spațiu luminos.
 
 Acordă atenție la:
 - Evită interioarele reci și aglomerate.
@@ -87,13 +82,11 @@ Acordă atenție la:
 - Simte energia locului — cum te face să te simți?
 
 Sfat personal:
-Locuința ta ar trebui să fie o sursă de energie care te sprijină și te inspiră zilnic.
-                `
+Locuința ta ar trebui să fie o sursă de energie care te sprijină și te inspiră zilnic.`
             },
             "minimal": {
                 "title": "Profilul tău: Minimalist Conștient",
-                "description": `
-Apreciezi simplitatea, claritatea și ordinea. Spațiul tău trebuie să fie aerisit, funcțional și lipsit de elemente inutile.
+                "description": `Apreciezi simplitatea, claritatea și ordinea. Spațiul tău trebuie să fie aerisit, funcțional și lipsit de elemente inutile.
 
 Locuința ideală pentru tine:
 Un studio simplu sau un apartament cu plan clar. Tonuri deschise, mobilier minim și utilizare eficientă a spațiului.
@@ -104,16 +97,14 @@ Acordă atenție la:
 - Simplitatea trebuie să lucreze în favoarea ta.
 
 Sfat personal:
-Casa ta reflectă mintea ta. Las-o să susțină concentrarea și echilibrul interior.
-                `
+Casa ta reflectă mintea ta. Las-o să susțină concentrarea și echilibrul interior.`
             },
             "introvert": {
-                "title": "Profilul tău: Retras Reflexiv",
-                "description": `
-Ești o persoană rezervată și profundă. Tăcerea, liniștea și intimitatea sunt prioritare pentru tine. Te obosește zgomotul și socializarea în exces.
+                "title": "Profilul tău: Retraș Reflexiv",
+                "description": `Ești o persoană rezervată și profundă. Tăcerea, liniștea și intimitatea sunt prioritare pentru tine. Te obosește zgomotul și agitația.
 
 Locuința ideală pentru tine:
-Un apartament sau o casă într-o zonă retrasă, cu izolare fonică bună. Prezența unui birou sau colț personal este un mare avantaj.
+Un apartament sau o casă într-o zonă retrasă, cu izolare fonică bună. Prezența unui birou sau colț personal este un plus.
 
 Acordă atenție la:
 - Intimitate și distanțare față de agitație.
@@ -121,19 +112,47 @@ Acordă atenție la:
 - Confort și calm în fiecare detaliu.
 
 Sfat personal:
-Alege o locuință care îți permite să fii tu însuți. Liniștea din jur îți va activa potențialul interior.
-                `
+Alege o locuință care îți permite să fii tu însuți. Liniștea din jur îți va activa potențialul interior.`
+            },
+            "leader": {
+                "title": "Profilul tău: Strateg Financiar",
+                "description": `Gândești pe termen lung și iei decizii raționale. Casa ta trebuie să fie o investiție solidă, dar și o expresie a succesului tău.
+
+Locuința ideală pentru tine:
+Un apartament premium, o proprietate în dezvoltare sau o casă care își va crește valoarea.
+
+Acordă atenție la:
+- Randament investițional.
+- Zonă cu potențial de dezvoltare.
+- Finisaje de calitate și aspect reprezentativ.
+
+Sfat personal:
+Casa este și un activ. Alege inteligent, fără să pierzi din vedere confortul personal.`
+            },
+            "artist": {
+                "title": "Profilul tău: Creativ Liber",
+                "description": `Te exprimi prin spațiu. Nu vrei reguli, ci locuri care te inspiră și te ajută să creezi. Ești spontan, jucăuș și profund.
+
+Locuința ideală pentru tine:
+Un loft, un spațiu neconvențional sau o locuință modulară. Libertate de reamenajare.
+
+Acordă atenție la:
+- Iluminat natural, culori și texturi.
+- Posibilitatea de adaptare.
+- Spațiu pentru hobbyuri sau artă.
+
+Sfat personal:
+Lasă casa să fie scenă pentru ideile tale. Creează-ți propriul univers în fiecare colț.`
             }
         };
 
         if (profile && profileData[profile]) {
             const content = profileData[profile];
-            document.getElementById("resultContent").innerHTML = `
-                <h2>${content.title}</h2>
-                <p>${content.description.replace(/\n/g, "<br>")}</p>
-            `;
+            document.getElementById("resultContent").innerHTML =
+                `<h2>${content.title}</h2><p>${content.description.replace(/\n/g, "<br>")}</p>`;
         } else {
-            document.getElementById("resultContent").innerHTML = "<p>Profilul nu a fost identificat. Te rugăm să refaci testul.</p>";
+            document.getElementById("resultContent").innerHTML =
+                "<p>Profilul nu a fost identificat. Te rugăm să refaci testul.</p>";
         }
     </script>
 </body>
