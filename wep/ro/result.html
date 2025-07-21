@@ -30,21 +30,55 @@
 </head>
 <body>
     <div class="container">
-        <div id="resultContent">
-          <div id="emailForm" style="margin-top: 40px;">
-  <h3>Primește rezultatul pe email</h3>
-  <p>Introduce adresa ta de email:</p>
-  <form onsubmit="sendEmail(); return false;">
-      <input type="email" id="emailInput" placeholder="ex: exemplu@email.com" required style="padding: 10px; width: 300px;" />
-      <button type="submit" style="padding: 10px 20px; margin-top: 10px; background-color: #d8b59c; border: none; color: white;">Trimite pe email</button>
-</form>
+        <div id="resultContent"></div>
 
-</div>  
-            <p>Se încarcă rezultatul...</p>
+        <div id="emailForm" style="margin-top: 40px;">
+            <h3>Primește rezultatul pe email</h3>
+            <p>Introduce adresa ta de email:</p>
+            <form onsubmit="sendEmail(); return false;">
+                <input type="email" id="emailInput" placeholder="ex: exemplu@email.com" required style="padding: 10px; width: 300px;" />
+                <button type="submit" style="padding: 10px 20px; margin-top: 10px; background-color: #d8b59c; border: none; color: white;">Trimite pe email</button>
+            </form>
+            <p id="emailStatus" style="margin-top: 10px;"></p>
         </div>
     </div>
 
     <script>
+        function sendEmail() {
+            const email = document.getElementById("emailInput").value;
+            const status = document.getElementById("emailStatus");
+            const result = document.getElementById("resultContent").innerText;
+
+            if (!email) {
+                status.textContent = "Te rugăm să introduci un email.";
+                status.style.color = "red";
+                return;
+            }
+
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    access_key: "fdabefb9-6172-41d8-a53a-c1881a453cf5",
+                    email: email,
+                    message: result
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    status.textContent = "Emailul a fost trimis cu succes!";
+                    status.style.color = "green";
+                } else {
+                    status.textContent = "Eroare la trimitere.";
+                    status.style.color = "red";
+                }
+            })
+            .catch(() => {
+                status.textContent = "Eroare de rețea.";
+                status.style.color = "red";
+            });
+        }
+
         const params = new URLSearchParams(window.location.search);
         const profile = params.get("profile");
 
@@ -82,8 +116,7 @@ Confort, logică și funcționalitate înainte de toate. Casa trebuie să fie o 
                 "title": "Profilul tău: Visător Natural",
                 "description": `Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Casa ta reflectă sufletul tău.
 
-Locuința ideală pentru tine:
-Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spațiu luminos.
+Locuința ideală pentru tine:Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spațiu luminos.
 
 Acordă atenție la:
 - Evită interioarele reci și aglomerate.
