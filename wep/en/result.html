@@ -2,12 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Nebshome Profile</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Your Profile Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+            padding: 32px 24px;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        p {
+            color: #444;
+            line-height: 1.7;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div id="resultContent"></div>
+        <div id="resultContent">
+            <p>Loading your result...</p>
+        </div>
     </div>
 
     <script>
@@ -17,99 +42,118 @@
         const profileData = {
             "explorer": {
                 "title": "Your Profile: Urban Explorer",
-                "description": `
-You are an active person, always on the move and looking for new experiences. You want to live close to the action, surrounded by people and energy.
-
+                "description": `You're an active person who enjoys movement and exploring new experiences. You love being in the center of events.
+                
 Ideal home for you:
-A modern apartment in the city center or near active infrastructure. Panoramic windows, bright spaces and an open layout will fit you best.
+A modern apartment in the city center or near dynamic infrastructure. Panoramic windows, bright spaces, and smart layout.
 
 Pay attention to:
-- Location near cafes, parks, and public transport.
-- Open-plan layout with natural light.
-- A mix of city energy and personal comfort.
+- Proximity to cafes, parks, and transport
+- Natural light and open spaces
+- Energy of the city mixed with personal comfort
 
 Personal advice:
-Choose a place that energizes and inspires you to keep your dynamic rhythm.
-                `
+Your home should energize and recharge you. Choose a space that matches your rhythm of life.`
             },
             "family": {
-                "title": "Your Profile: Structured Family Person",
-                "description": `
-You value stability, order and caring for your loved ones. Home is a place of warmth, safety and space for your family.
+                "title": "Your Profile: Structured Family-Oriented",
+                "description": `You value stability, order, and care for loved ones. Home is your safety zone – warm, cozy, and secure.
 
 Ideal home for you:
-A spacious apartment or house in a quiet area, close to schools, kindergartens, and stores. The layout should be practical and organized.
+A spacious apartment or house in a quiet area, near kindergartens, schools, and shops. Organized and functional spaces.
 
 Pay attention to:
-- Long-term convenience for the next 5+ years.
-- Neighbors and overall environment.
-- Functionality and logic in layout.
+- Think long-term: will you feel good here in 5 years?
+- Evaluate neighbors and noise level
+- Comfort, logic, and functionality above all
 
 Personal advice:
-Your home should be your family’s fortress – where everyone has space and comfort.
-                `
+Your home should be a fortress for your family, where everyone finds their place and balance.`
             },
             "dreamer": {
-                "title": "Your Profile: Nature Dreamer",
-                "description": `
-You are a sensitive, intuitive person. Harmony, beauty, and a connection with nature are vital for your well-being.
+                "title": "Your Profile: Natural Dreamer",
+                "description": `You're sensitive and intuitive. You seek harmony, inspiration, and a connection with nature.
 
 Ideal home for you:
-An apartment with views to greenery or a house outside the city. Natural materials, plants, light and airy rooms will support your energy.
+An apartment with green view or a house outside the city. Natural materials, plants, bright and airy spaces.
 
 Pay attention to:
-- Avoid cold or overly modern interiors.
-- Include space for solitude and creativity.
-- Check the emotional atmosphere of the place.
+- Avoid cold, cluttered interiors
+- Create cozy corners for retreat and creativity
+- Sense the place’s energy – how does it make you feel?
 
 Personal advice:
-Your home should be your personal sanctuary – restoring and uplifting you daily.
-                `
+Your home should be a source of daily energy and inspiration.`
             },
             "minimal": {
                 "title": "Your Profile: Conscious Minimalist",
-                "description": `
-You appreciate simplicity, order and clarity. Your ideal space is functional, calm, and free of clutter.
+                "description": `You appreciate simplicity, clarity, and order. Your space should be airy, functional, and free of clutter.
 
 Ideal home for you:
-A compact studio or smart apartment with a clear layout. Bright tones, minimal furniture, and high usability.
+A simple studio or a flat with a clean layout. Light tones, minimal furniture, and efficient use of space.
 
 Pay attention to:
-- Eliminate unnecessary items.
-- Focus on flexibility and efficiency.
-- Let simplicity work for you.
+- Remove what you don’t use and focus on essentials
+- Look for ergonomic and flexible design
+- Let simplicity work in your favor
 
 Personal advice:
-Your home reflects your mind. Let it support your focus and balance.
-                `
+Your home reflects your mind. Let it support focus and inner balance.`
             },
             "introvert": {
                 "title": "Your Profile: Reflective Introvert",
-                "description": `
-You are introspective and thoughtful. Silence, peace and privacy are key for you. Too much noise or stimulation drains you.
+                "description": `You're a reserved and deep person. Silence, calm, and privacy are your priorities.
 
 Ideal home for you:
-A quiet apartment or house, ideally away from noisy streets. A personal workspace or reading corner is a huge plus.
+An apartment or house in a quiet zone, with sound insulation and a cozy personal corner.
 
 Pay attention to:
-- Privacy and distance from crowded areas.
-- Sound insulation and calm surroundings.
-- Every detail should offer peace.
+- Distance from noisy areas
+- Good soundproofing and layout for privacy
+- Calm and comfort in every detail
 
 Personal advice:
-Find a home that lets you be yourself. Outer calm will help unlock your inner potential.
-                `
+Choose a space that allows you to be yourself. Peace around you will unlock your potential.`
+            },
+            "visionary": {
+                "title": "Your Profile: Visionary Creator",
+                "description": `You’re driven by ideas and purpose. Your space must stimulate innovation and support your goals.
+
+Ideal home for you:
+A loft or open-plan apartment with creative freedom. Natural light, multifunctional areas, and inspiration everywhere.
+
+Pay attention to:
+- Adaptive design for changing projects
+- Light, technology, and clarity
+- Energy that matches your ambition
+
+Personal advice:
+Your home is your launchpad. Design it to reflect your mission.`
+            },
+            "grounded": {
+                "title": "Your Profile: Practical Grounded",
+                "description": `You value comfort and logic. You need a home that supports your lifestyle without complications.
+
+Ideal home for you:
+A functional apartment close to everything you need. Reliable layout, accessible spaces, and low stress.
+
+Pay attention to:
+- Proximity to daily needs: stores, transport, services
+- Clear layout and usability
+- Budget and long-term practicality
+
+Personal advice:
+Let your home support your peace and simplify your life.`
             }
         };
 
         if (profile && profileData[profile]) {
             const content = profileData[profile];
-            document.getElementById("resultContent").innerHTML = `
-                <h2>${content.title}</h2>
-                <p>${content.description.replace(/\n/g, "<br>")}</p>
-            `;
+            document.getElementById("resultContent").innerHTML =
+                `<h2>${content.title}</h2><p>${content.description.replace(/\n/g, "<br>")}</p>`;
         } else {
-            document.getElementById("resultContent").innerHTML = "<p>Profile not defined. Please take the test again.</p>";
+            document.getElementById("resultContent").innerHTML =
+                "<p>Profile not identified. Please redo the test.</p>";
         }
     </script>
 </body>
