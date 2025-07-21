@@ -137,8 +137,8 @@ function sendEmail() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      access_key: "YOUR_ACCESS_KEY_AICI",
-      email: email,
+      access_key: "fdabefb9-6172-41d8-a53a-c1881a453cf5",
+            email: email,
       message: result
     })
   })
