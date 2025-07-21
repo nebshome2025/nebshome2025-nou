@@ -127,3 +127,29 @@ window.onload = () => {
         window.location.href = `result.html?profile=${profile}`;
     };
 };
+function sendEmail() {
+  const email = document.getElementById("emailInput").value;
+  const result = document.getElementById("resultContent").innerText;
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      access_key: "YOUR_ACCESS_KEY_AICI",
+      email: email,
+      message: result
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      document.getElementById("emailStatus").textContent = "Email trimis cu succes!";
+    } else {
+      document.getElementById("emailStatus").textContent = "Eroare la trimiterea emailului.";
+    }
+  })
+  .catch(error => {
+    document.getElementById("emailStatus").textContent = "Eroare: " + error;
+  });
+}
