@@ -43,6 +43,14 @@
         </div>
     </div>
 
+    <!-- EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+        emailjs.init("yH5raNRz8r0Z7us14"); // cheia ta publică
+      })();
+    </script>
+
     <script>
         function sendEmail() {
             const email = document.getElementById("emailInput").value;
@@ -55,26 +63,16 @@
                 return;
             }
 
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    access_key: "fdabefb9-6172-41d8-a53a-c1881a453cf5",
-                    email: email,
-                    message: result
-                })
+            emailjs.send("service_fi6vuze", "template_z9cpnzv", {
+                to_email: email,
+                message: result
             })
-            .then(response => {
-                if (response.ok) {
-                    status.textContent = "Emailul a fost trimis cu succes!";
-                    status.style.color = "green";
-                } else {
-                    status.textContent = "Eroare la trimitere.";
-                    status.style.color = "red";
-                }
+            .then(() => {
+                status.textContent = "Emailul a fost trimis cu succes!";
+                status.style.color = "green";
             })
             .catch(() => {
-                status.textContent = "Eroare de rețea.";
+                status.textContent = "Eroare la trimitere.";
                 status.style.color = "red";
             });
         }
@@ -116,7 +114,8 @@ Confort, logică și funcționalitate înainte de toate. Casa trebuie să fie o 
                 "title": "Profilul tău: Visător Natural",
                 "description": `Ești o persoană sensibilă și intuitivă. Ai nevoie de armonie, inspirație și conexiune cu natura. Casa ta reflectă sufletul tău.
 
-Locuința ideală pentru tine:Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spațiu luminos.
+Locuința ideală pentru tine:
+Un apartament cu vedere spre verdeață sau o casă în afara orașului. Materiale naturale, plante vii, spațiu luminos.
 
 Acordă atenție la:
 - Evită interioarele reci și aglomerate.
