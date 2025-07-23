@@ -98,10 +98,11 @@
             const data = profileData[profileParam];
 
             emailjs.send("service_fi6vuze", "template_z9cpnzv", {
-                to_email: email,
-                name: email,
-                title: data.title,
-                message: data.message
+  to_email: email,
+  name: "Client Nebshome",
+  title: data?.title || "Profilul tău",
+  message: data?.message || "Mesaj indisponibil."
+})
             }).then(function(response) {
                 statusDiv.innerText = "Rezultatul a fost trimis pe email.";
                 statusDiv.style.color = "green";
