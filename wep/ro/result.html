@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Rezultatul testului</title>
+    <title>Rezultatul testului Nebshome</title>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         body {
@@ -31,10 +31,27 @@
             margin-top: 15px;
             font-weight: bold;
         }
+        .pay-link {
+            margin-top: 25px;
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            background: #d8b59c;
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="payContainer">
+        <h2>Plătește pentru a primi rezultatul testului</h2>
+        <p>Apasă pe butonul de mai jos pentru a efectua plata:</p>
+        <a href="https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb" class="pay-link">Plătește acum</a>
+    </div>
+
+    <div class="container" id="formContainer" style="display:none;">
         <h2>Primește rezultatul testului Nebshome</h2>
         <p>Introdu adresa ta de email pentru a primi rezultatul:</p>
         <form id="emailForm">
@@ -46,9 +63,16 @@
     </div>
 
     <script>
-       emailjs.init("yH5raNRz8r0Z7us14"); 
+        emailjs.init("yH5raNRz8r0Z7us14");
 
         const profileParam = new URLSearchParams(window.location.search).get("profile");
+        const paidParam = new URLSearchParams(window.location.search).get("paid");
+
+        // Dacă linkul conține `?profile=xxx&paid=true`, ascundem containerul de plată
+        if (paidParam === "true" && profileParam) {
+            document.getElementById("payContainer").style.display = "none";
+            document.getElementById("formContainer").style.display = "block";
+        }
 
         const profileData = {
             "explorer": {
@@ -98,11 +122,10 @@
             const data = profileData[profileParam];
 
             emailjs.send("service_fi6vuze", "template_z9cpnzv", {
-  to_email: email,
-  name: "Client Nebshome",
-  title: data?.title || "Profilul tău",
-  message: data?.message || "Mesaj indisponibil."
-})
+                to_email: email,
+                name: "Client Nebshome",
+                title: data.title,
+                message: data.message
             }).then(function(response) {
                 statusDiv.innerText = "Rezultatul a fost trimis pe email.";
                 statusDiv.style.color = "green";
@@ -114,4 +137,4 @@
         });
     </script>
 </body>
-</html>
+</html></form></div>
