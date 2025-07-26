@@ -1,140 +1,89 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Rezultatul testului Nebshome</title>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         body {
+            background-color: #f4f1eb;
             font-family: Arial, sans-serif;
-            background: #f4f1eb;
-            margin: 0;
-            padding: 20px;
+            padding: 40px;
         }
         .container {
             max-width: 600px;
-            margin: auto;
-            background: #fff;
+            background-color: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-        h2 {
-            color: #333;
-        }
-        input, button {
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        #status {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        .pay-link {
-            margin-top: 25px;
-            display: block;
-            font-size: 16px;
-            color: #fff;
-            background: #d8b59c;
-            padding: 12px;
+            margin: auto;
             text-align: center;
+            border-radius: 10px;
+        }
+        input[type="email"] {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #d8b59c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 16px;
             border-radius: 5px;
-            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="payContainer">
-        <h2>Plătește pentru a primi rezultatul testului</h2>
-        <p>Apasă pe butonul de mai jos pentru a efectua plata:</p>
-        <a href="https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb" class="pay-link">Plătește acum</a>
-    </div>
-
-    <div class="container" id="formContainer" style="display:none;">
-        <h2>Primește rezultatul testului Nebshome</h2>
-        <p>Introdu adresa ta de email pentru a primi rezultatul:</p>
-        <form id="emailForm">
-            <input type="email" id="emailInput" placeholder="ex: exemplu@email.com" required>
-            <br>
-            <button type="submit">Trimite rezultatul</button>
-        </form>
-        <div id="status"></div>
+    <div class="container">
+        <h2>Introdu adresa ta de email pentru a primi rezultatul testului:</h2>
+        <input type="email" id="email" placeholder="exemplu@email.com" />
+        <br />
+        <button onclick="trimiteEmail()">Trimite rezultatul</button>
+        <p id="status"></p>
     </div>
 
     <script>
-        emailjs.init("yH5raNRz8r0Z7us14");
+        emailjs.init("1ST-gLMyc21_n0LYfFhMn"); // Public key
 
-        const profileParam = new URLSearchParams(window.location.search).get("profile");
-        const paidParam = new URLSearchParams(window.location.search).get("paid");
-
-        // Dacă linkul conține `?profile=xxx&paid=true`, ascundem containerul de plată
-        if (paidParam === "true" && profileParam) {
-            document.getElementById("payContainer").style.display = "none";
-            document.getElementById("formContainer").style.display = "block";
+        function getProfilText(profile) {
+            const profiles = {
+                explorer: "Profilul tău este Explorator Urban – iubești dinamica orașului și vrei un spațiu care să-ți reflecte energia.",
+                family: "Profilul tău este Familist Structurat – cauți stabilitate, funcționalitate și un cămin potrivit familiei.",
+                dreamer: "Profilul tău este Visător Natural – ai nevoie de lumină, verdeață și un loc conectat cu natura.",
+                minimalist: "Profilul tău este Minimalist Conștient – îți place ordinea, spațiul clar și eficiența.",
+                retreat: "Profilul tău este Retraș Reflexiv – vrei intimitate, liniște și un loc retras.",
+                creative: "Profilul tău este Creativ Liber – ai nevoie de libertate de exprimare și un spațiu neconvențional.",
+                luxury: "Profilul tău este Estet Luxos – apreciezi designul rafinat, confortul și exclusivitatea."
+            };
+            return profiles[profile] || "Profil necunoscut.";
         }
 
-        const profileData = {
-            "explorer": {
-                title: "Profilul tău: Explorator Urban",
-                message: `Ești o persoană activă, mereu în mișcare, care caută experiențe noi și provocări. Îți place să explorezi orașul, să descoperi locuri și oameni noi, iar casa ta reflectă această energie vibrantă. Ai nevoie de un spațiu flexibil, adaptabil, care să-ți susțină stilul de viață dinamic.`
-            },
-            "family": {
-                title: "Profilul tău: Familist Structurat",
-                message: `Apreciezi stabilitatea, ordinea și grija pentru cei dragi. Casa ta este un refugiu pentru familie, unde fiecare colț are un scop și o poveste. Îți place să creezi un mediu sigur, organizat și confortabil, în care toți membrii familiei să se simtă bineveniți.`
-            },
-            "dreamer": {
-                title: "Profilul tău: Visător Natural",
-                message: `Ești o persoană sensibilă și intuitivă, conectată la natură și la propriile emoții. Îți place să visezi, să te relaxezi și să te înconjori de elemente naturale. Casa ta este un spațiu liniștit, plin de lumină, plante și texturi organice, care te ajută să-ți găsești echilibrul interior.`
-            },
-            "minimal": {
-                title: "Profilul tău: Minimalist Conștient",
-                message: `Apreciezi simplitatea, claritatea și ordinea. Îți place să trăiești cu mai puțin, dar mai bun, și să elimini lucrurile inutile din viața ta. Casa ta este aerisită, funcțională și organizată, reflectând dorința ta de a avea control și de a te concentra pe ceea ce contează cu adevărat.`
-            },
-            "introvert": {
-                title: "Profilul tău: Retraș Reflexiv",
-                message: `Ești o persoană rezervată și profundă, care apreciază intimitatea și liniștea. Îți place să ai un spațiu personal unde să te retragi, să citești sau să reflectezi. Casa ta este un sanctuar, amenajat cu grijă pentru a-ți oferi confort și siguranță.`
-            },
-            "leader": {
-                title: "Profilul tău: Strateg Financiar",
-                message: `Gândești pe termen lung și iei decizii raționale. Îți place să ai control asupra resurselor și să investești în lucruri de calitate. Casa ta este bine organizată, eficientă și reflectă succesul și stabilitatea pe care le-ai construit.`
-            },
-            "artist": {
-                title: "Profilul tău: Creativ Liber",
-                message: `Te exprimi prin spațiu. Nu vrei reguli, ci libertate să creezi și să experimentezi. Casa ta este plină de culoare, obiecte unice și proiecte DIY, fiind o extensie a personalității tale artistice.`
-            }
-        };
+        function trimiteEmail() {
+            const email = document.getElementById("email").value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const profile = urlParams.get("profile");
 
-        const form = document.getElementById("emailForm");
-        const emailInput = document.getElementById("emailInput");
-        const statusDiv = document.getElementById("status");
+            const mesaj = getProfilText(profile);
 
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            const email = emailInput.value;
-
-            if (!profileParam || !profileData[profileParam]) {
-                statusDiv.innerText = "Profil invalid. Te rugăm să refaci testul.";
-                statusDiv.style.color = "red";
+            if (!email || !profile) {
+                document.getElementById("status").textContent = "Te rugăm să introduci un email valid.";
                 return;
             }
 
-            const data = profileData[profileParam];
-
             emailjs.send("service_fi6vuze", "template_z9cpnzv", {
                 to_email: email,
-                name: "Client Nebshome",
-                title: data.title,
-                message: data.message
-            }).then(function(response) {
-                statusDiv.innerText = "Rezultatul a fost trimis pe email.";
-                statusDiv.style.color = "green";
-                form.reset();
-            }, function(error) {
-                statusDiv.innerText = "Eroare la trimitere. Încearcă din nou.";
-                statusDiv.style.color = "red";
+                message: mesaj,
+                subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
+            })
+            .then(() => {
+                document.getElementById("status").textContent = "✅ Rezultatul a fost trimis pe email!";
+            })
+            .catch((error) => {
+                document.getElementById("status").textContent = "Eroare la trimiterea emailului. Încearcă din nou.";
+                console.error(error);
             });
-        });
+        }
     </script>
 </body>
 </html>
