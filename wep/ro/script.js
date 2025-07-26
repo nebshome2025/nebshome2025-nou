@@ -110,7 +110,7 @@ window.onload = () => {
     questionsData.forEach((q, i) => {
         const block = document.createElement("div");
         block.innerHTML = `<p><strong>${i + 1}. ${q.q}</strong></p>` + q.a.map((ans, idx) =>
-            `<label><input type="radio" name="q${i}" value="${idx}" ${idx === 0 ? 'required' : ''}> ${ans}</label><br>`
+            `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
         ).join('');
         questionsDiv.appendChild(block);
     });
@@ -125,8 +125,10 @@ window.onload = () => {
         const maxIndex = score.indexOf(Math.max(...score));
         const profile = weights[maxIndex];
 
+        // Salvează profilul în localStorage
         localStorage.setItem("profil_nebshome", profile);
 
+        // Trimite către Lemon pentru plată
         window.location.href = "https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
     };
 };
