@@ -115,7 +115,7 @@ window.onload = () => {
         questionsDiv.appendChild(block);
     });
 
-    form.onsubmit = function(e) {
+    form.onsubmit = function (e) {
         e.preventDefault();
         let score = [0, 0, 0, 0, 0];
         for (let i = 0; i < 10; i++) {
@@ -124,6 +124,9 @@ window.onload = () => {
         }
         const maxIndex = score.indexOf(Math.max(...score));
         const profile = weights[maxIndex];
-        window.location.href = `result.html?profile=${profile}`;
+
+        localStorage.setItem("profil_nebshome", profile);
+
+        window.location.href = "https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
     };
 };
