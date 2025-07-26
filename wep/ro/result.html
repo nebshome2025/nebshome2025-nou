@@ -22,6 +22,8 @@
             padding: 10px;
             width: 80%;
             margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         button {
             background-color: #d8b59c;
@@ -31,6 +33,10 @@
             cursor: pointer;
             font-size: 16px;
             border-radius: 5px;
+        }
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -48,26 +54,24 @@
 
         function getProfilText(profile) {
             const profiles = {
-                explorer: "Profilul tău este Explorator Urban – iubești dinamica orașului și vrei un spațiu care să-ți reflecte energia.",
-                family: "Profilul tău este Familist Structurat – cauți stabilitate, funcționalitate și un cămin potrivit familiei.",
-                dreamer: "Profilul tău este Visător Natural – ai nevoie de lumină, verdeață și un loc conectat cu natura.",
-                minimalist: "Profilul tău este Minimalist Conștient – îți place ordinea, spațiul clar și eficiența.",
-                retreat: "Profilul tău este Retraș Reflexiv – vrei intimitate, liniște și un loc retras.",
-                creative: "Profilul tău este Creativ Liber – ai nevoie de libertate de exprimare și un spațiu neconvențional.",
-                luxury: "Profilul tău este Estet Luxos – apreciezi designul rafinat, confortul și exclusivitatea."
+                explorer: "🧭 Explorator Urban: iubești dinamica orașului, vrei un spațiu modern și conectat, care îți susține energia activă.",
+                family: "🏡 Familist Structurat: cauți stabilitate și funcționalitate, o locuință confortabilă pentru tine și familia ta.",
+                dreamer: "🌿 Visător Natural: ai nevoie de lumină, verdeață și un loc în care să te reconectezi cu tine și cu natura.",
+                minimal: "📐 Minimalist Conștient: îți place ordinea, spațiul aerisit, simplitatea și eficiența în fiecare colț.",
+                introvert: "🧘 Retraș Reflexiv: vrei intimitate, liniște și un spațiu doar al tău unde să te regăsești.",
+                creative: "🎨 Creativ Liber: ai nevoie de libertate de exprimare, un spațiu neconvențional și inspirațional.",
+                luxury: "💎 Estet Luxos: apreciezi designul rafinat, confortul premium și o ambianță elegantă."
             };
             return profiles[profile] || "Profil necunoscut.";
         }
 
         function trimiteEmail() {
             const email = document.getElementById("email").value;
-            const urlParams = new URLSearchParams(window.location.search);
-            const profile = urlParams.get("profile");
-
+            const profile = localStorage.getItem("profil_nebshome");
             const mesaj = getProfilText(profile);
 
             if (!email || !profile) {
-                document.getElementById("status").textContent = "Te rugăm să introduci un email valid.";
+                document.getElementById("status").textContent = "❗Te rugăm să introduci un email valid.";
                 return;
             }
 
@@ -77,10 +81,10 @@
                 subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
             })
             .then(() => {
-                document.getElementById("status").textContent = "✅ Rezultatul a fost trimis pe email!";
+                document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
             })
             .catch((error) => {
-                document.getElementById("status").textContent = "Eroare la trimiterea emailului. Încearcă din nou.";
+                document.getElementById("status").textContent = "❌ Eroare la trimiterea emailului. Încearcă din nou.";
                 console.error(error);
             });
         }
