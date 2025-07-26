@@ -110,12 +110,12 @@ window.onload = () => {
     questionsData.forEach((q, i) => {
         const block = document.createElement("div");
         block.innerHTML = `<p><strong>${i + 1}. ${q.q}</strong></p>` + q.a.map((ans, idx) =>
-            `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
+            `<label><input type="radio" name="q${i}" value="${idx}" ${idx === 0 ? 'required' : ''}> ${ans}</label><br>`
         ).join('');
         questionsDiv.appendChild(block);
     });
 
-    form.onsubmit = function (e) {
+    form.onsubmit = function(e) {
         e.preventDefault();
         let score = [0, 0, 0, 0, 0];
         for (let i = 0; i < 10; i++) {
