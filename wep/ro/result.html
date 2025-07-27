@@ -76,10 +76,12 @@
             }
 
             emailjs.send("service_fi6vuze", "template_z9cpnzv", {
-                to_email: email,
-                message: mesaj,
-                subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
-            })
+    to_email: email,
+    name: "Utilizator Nebshome",
+    title: mesaj.split(":")[0], // trimite doar titlul, ex: "🧭 Explorator Urban"
+    message: mesaj,
+    subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
+})
             .then(() => {
                 document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
             })
