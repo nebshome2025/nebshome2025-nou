@@ -1,33 +1,17 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Testul Nebshome</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <form id="testForm" class="container">
         <h2>Răspunde la toate întrebările:</h2>
         <div id="questions"></div>
-        <button type="button" class="start-button" onclick="finalizeazaTest()">Vezi rezultatul</button>
+        <button type="submit" class="start-button">Vezi rezultatul</button>
     </form>
 
     <script src="script.js"></script>
-    <script>
-        function finalizeazaTest() {
-            const profilFinal = calculeazaProfil(); // funcție din script.js
-
-            if (!profilFinal) {
-                alert("Completează toate întrebările înainte de a continua.");
-                return;
-            }
-
-            // Salvează în localStorage
-            localStorage.setItem("profil_nebshome", profilFinal);
-
-            // Trimite către pagina de plată LemonSqueezy
-            window.location.href = "https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
-        }
-    </script>
 </body>
 </html>
