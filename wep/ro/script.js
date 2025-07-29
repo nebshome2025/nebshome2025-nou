@@ -129,6 +129,6 @@ window.onload = () => {
         localStorage.setItem("profil_nebshome", profile);
 
         // Redirecționează către LemonSqueezy pentru plată
-        window.location.href = "https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
+       window.location.href = `https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb?profile=${profile}`;
     };
 };
