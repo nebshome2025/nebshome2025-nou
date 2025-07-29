@@ -52,6 +52,16 @@
     <script>
         emailjs.init("1ST-gLMyc21_n0LYfFhMn"); // Public key
 
+        const profile = localStorage.getItem("profil_nebshome");
+
+        // Protecție: dacă nu există profil salvat, trimite înapoi la test
+        if (!profile) {
+            document.body.innerHTML = "<h2 style='text-align:center;color:red'>❗Acces nepermis. Te rugăm să completezi testul mai întâi.</h2>";
+            setTimeout(() => {
+                window.location.href = "test.html";
+            }, 3000);
+        }
+
         function getProfilText(profile) {
             const profiles = {
                 explorer: "🧭 Explorator Urban: iubești dinamica orașului, vrei un spațiu modern și conectat, care îți susține energia activă.",
@@ -67,23 +77,23 @@
 
         function trimiteEmail() {
             const email = document.getElementById("email").value;
-            const profile = localStorage.getItem("profil_nebshome");
             const mesaj = getProfilText(profile);
 
-            if (!email || !profile) {
+            if (!email) {
                 document.getElementById("status").textContent = "❗Te rugăm să introduci un email valid.";
                 return;
             }
 
             emailjs.send("service_fi6vuze", "template_z9cpnzv", {
-    to_email: email,
-    name: "Utilizator Nebshome",
-    title: mesaj.split(":")[0], // trimite doar titlul, ex: "🧭 Explorator Urban"
-    message: mesaj,
-    subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
-})
+                to_email: email,
+                name: "Utilizator Nebshome",
+                title: mesaj.split(":")[0],
+                message: mesaj,
+                subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
+            })
             .then(() => {
                 document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
+                localStorage.removeItem("profil_nebshome"); // Șterge profilul după trimitere
             })
             .catch((error) => {
                 document.getElementById("status").textContent = "❌ Eroare la trimiterea emailului. Încearcă din nou.";
