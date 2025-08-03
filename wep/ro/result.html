@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <title>Rezultatul testului Nebshome</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         body {
             background-color: #f4f1eb;
@@ -45,16 +44,13 @@
         <h2>Introdu adresa ta de email pentru a primi rezultatul testului:</h2>
         <input type="email" id="email" placeholder="exemplu@email.com" />
         <br />
-        <button onclick="trimiteEmail()">Trimite rezultatul</button>
+        <button onclick="trimiteRezultatul()">Trimite rezultatul</button>
         <p id="status"></p>
     </div>
 
     <script>
-        emailjs.init("yH5raNRz8r0Z7us14"); // Public key
-
         const profile = localStorage.getItem("profil_nebshome");
 
-        // Protecție: dacă nu există profil salvat, trimite înapoi la test
         if (!profile) {
             document.body.innerHTML = "<h2 style='text-align:center;color:red'>❗Acces nepermis. Te rugăm să completezi testul mai întâi.</h2>";
             setTimeout(() => {
@@ -62,42 +58,37 @@
             }, 3000);
         }
 
-        function getProfilText(profile) {
-            const profiles = {
-                explorer: "🧭 Explorator Urban: iubești dinamica orașului, vrei un spațiu modern și conectat, care îți susține energia activă.",
-                family: "🏡 Familist Structurat: cauți stabilitate și funcționalitate, o locuință confortabilă pentru tine și familia ta.",
-                dreamer: "🌿 Visător Natural: ai nevoie de lumină, verdeață și un loc în care să te reconectezi cu tine și cu natura.",
-                minimal: "📐 Minimalist Conștient: îți place ordinea, spațiul aerisit, simplitatea și eficiența în fiecare colț.",
-                introvert: "🧘 Retraș Reflexiv: vrei intimitate, liniște și un spațiu doar al tău unde să te regăsești.",
-                creative: "🎨 Creativ Liber: ai nevoie de libertate de exprimare, un spațiu neconvențional și inspirațional.",
-                luxury: "💎 Estet Luxos: apreciezi designul rafinat, confortul premium și o ambianță elegantă."
-            };
-            return profiles[profile] || "Profil necunoscut.";
-        }
-
-        function trimiteEmail() {
-            const email = document.getElementById("email").value;
-            const mesaj = getProfilText(profile);
+        function trimiteRezultatul() {
+            const email = document.getElementById("email").value.trim();
 
             if (!email) {
                 document.getElementById("status").textContent = "❗Te rugăm să introduci un email valid.";
                 return;
             }
 
-            emailjs.send("service_66ab3kh", "template_b9993nn", {
-                to_email: email,
-                name: "Utilizator Nebshome",
-                title: mesaj.split(":")[0],
-                message: mesaj,
-                subject: "Your Nebshome Test Result | Rezultatul testului tău Nebshome | Результат теста Nebshome"
+            const payload = {
+                email: email,
+                profile: profile
+            };
+
+            fetch("https://hook.eu2.make.com/sgju26h1x7h7jcmbyxrsn8mpmrbr8xaw", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
-            .then(() => {
-                document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
-                localStorage.removeItem("profil_nebshome"); // Șterge profilul după trimitere
+            .then((response) => {
+                if (response.ok) {
+                    document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
+                    localStorage.removeItem("profil_nebshome");
+                } else {
+                    document.getElementById("status").textContent = "❌ Eroare la trimitere. Încearcă din nou.";
+                }
             })
             .catch((error) => {
-                document.getElementById("status").textContent = "❌ Eroare la trimiterea emailului. Încearcă din nou.";
                 console.error(error);
+                document.getElementById("status").textContent = "❌ Eroare de rețea. Verifică conexiunea.";
             });
         }
     </script>
