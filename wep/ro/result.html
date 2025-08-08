@@ -49,8 +49,11 @@
     </div>
 
     <script>
-        const profile = localStorage.getItem("profil_nebshome");
+        // Luăm profilul direct din URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const profile = urlParams.get("profile");
 
+        // Dacă nu există profil, redirectăm înapoi la test
         if (!profile) {
             document.body.innerHTML = "<h2 style='text-align:center;color:red'>❗Acces nepermis. Te rugăm să completezi testul mai întâi.</h2>";
             setTimeout(() => {
@@ -81,7 +84,6 @@
             .then((response) => {
                 if (response.ok) {
                     document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
-                    localStorage.removeItem("profil_nebshome");
                 } else {
                     document.getElementById("status").textContent = "❌ Eroare la trimitere. Încearcă din nou.";
                 }
