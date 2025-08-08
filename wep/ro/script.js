@@ -115,20 +115,16 @@ window.onload = () => {
         questionsDiv.appendChild(block);
     });
 
-    form.onsubmit = function (e) {
-        e.preventDefault();
-        let score = [0, 0, 0, 0, 0];
-        for (let i = 0; i < 10; i++) {
-            const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-            score[val]++;
-        }
-        const maxIndex = score.indexOf(Math.max(...score));
-        const profile = weights[maxIndex];
+   form.onsubmit = function (e) {
+    e.preventDefault();
+    let score = [0, 0, 0, 0, 0];
+    for (let i = 0; i < 10; i++) {
+        const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+        score[val]++;
+    }
+    const maxIndex = score.indexOf(Math.max(...score));
+    const profile = weights[maxIndex];
 
-        // Salvează profilul în localStorage
-        localStorage.setItem("profil_nebshome", profile);
-
-        // Redirecționează către LemonSqueezy pentru plată
-       window.location.href = `https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb?profile=${profile}`;
-    };
-};
+    // Redirecționează către LemonSqueezy și setează succes_url
+    window.location.href = `https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb?checkout[success_url]=https://nebshome.com/result.html?profile=${profile}`;
+}; // <-- aici se închide funcția
