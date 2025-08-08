@@ -107,24 +107,30 @@ window.onload = () => {
     const form = document.getElementById("testForm");
     const questionsDiv = document.getElementById("questions");
 
+    // Generare întrebări în pagină
     questionsData.forEach((q, i) => {
         const block = document.createElement("div");
-        block.innerHTML = `<p><strong>${i + 1}. ${q.q}</strong></p>` + q.a.map((ans, idx) =>
-            `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
-        ).join('');
+        block.innerHTML = `<p><strong>${i + 1}. ${q.q}</strong></p>` +
+            q.a.map((ans, idx) =>
+                `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
+            ).join('');
         questionsDiv.appendChild(block);
     });
 
-   form.onsubmit = function (e) {
-    e.preventDefault();
-    let score = [0, 0, 0, 0, 0];
-    for (let i = 0; i < 10; i++) {
-        const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-        score[val]++;
-    }
-    const maxIndex = score.indexOf(Math.max(...score));
-    const profile = weights[maxIndex];
+    // La trimiterea formularului
+    form.onsubmit = function (e) {
+        e.preventDefault();
 
-    // Redirecționează către LemonSqueezy și setează succes_url
-    window.location.href = `https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb?checkout[success_url]=https://nebshome.com/result.html?profile=${profile}`;
-}; // <-- aici se închide funcția
+        let score = [0, 0, 0, 0, 0];
+        for (let i = 0; i < 10; i++) {
+            const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+            score[val]++;
+        }
+
+        const maxIndex = score.indexOf(Math.max(...score));
+        const profile = weights[maxIndex];
+
+        // Trimite direct către LemonSqueezy cu success_url către result.html
+        window.location.href = `https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb?checkout[success_url]=https://nebshome.com/result.html?profile=${profile}`;
+    };
+};
