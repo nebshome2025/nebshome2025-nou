@@ -107,7 +107,7 @@ window.onload = () => {
     const form = document.getElementById("testForm");
     const questionsDiv = document.getElementById("questions");
 
-    // Generare întrebări în pagină
+    // Generare întrebări
     questionsData.forEach((q, i) => {
         const block = document.createElement("div");
         block.innerHTML = `<p><strong>${i + 1}. ${q.q}</strong></p>` +
@@ -117,20 +117,42 @@ window.onload = () => {
         questionsDiv.appendChild(block);
     });
 
-    // La trimiterea formularului
+    // Trimitere formular
     form.onsubmit = function (e) {
         e.preventDefault();
 
+        // Calculează profilul
         let score = [0, 0, 0, 0, 0];
         for (let i = 0; i < 10; i++) {
             const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
             score[val]++;
         }
-
         const maxIndex = score.indexOf(Math.max(...score));
         const profile = weights[maxIndex];
 
-        // Trimite direct către LemonSqueezy cu success_url către result.html
-        window.location.href = `https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb?checkout[success_url]=https://nebshome.com/result.html?profile=${profile}`;
+        // Generează session_id
+        const sessionId = crypto.randomUUID();
+
+        // Trimite date la Make
+        fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                profile: profile,
+                lang: "ro",
+                session_id: sessionId
+            })
+        }).then(() => {
+            // Redirecționează la Lemon
+            const base = "https://nebshome-test.lemonsqueezy.com/checkout/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
+            const u = new URL(base);
+            u.searchParams.set("checkout[custom][session_id]", sessionId);
+            u.searchParams.set("checkout[custom][profile]", profile);
+            u.searchParams.set("checkout[custom][lang]", "ro");
+            window.location.href = u.toString();
+        }).catch(err => {
+            console.error("Eroare trimitere la Make:", err);
+            alert("A apărut o problemă. Încearcă din nou.");
+        });
     };
 };
