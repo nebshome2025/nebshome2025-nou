@@ -1,98 +1,38 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Rezultatul testului Nebshome</title>
     <style>
         body {
             background-color: #f4f1eb;
             font-family: Arial, sans-serif;
             padding: 40px;
+            text-align: center;
         }
         .container {
             max-width: 600px;
             background-color: white;
             padding: 30px;
             margin: auto;
-            text-align: center;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        input[type="email"] {
-            padding: 10px;
-            width: 80%;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        h2 {
+            color: #333;
         }
-        button {
-            background-color: #d8b59c;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            cursor: pointer;
+        p {
             font-size: 16px;
-            border-radius: 5px;
-        }
-        #status {
-            margin-top: 15px;
-            font-weight: bold;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Introdu adresa ta de email pentru a primi rezultatul testului:</h2>
-        <input type="email" id="email" placeholder="exemplu@email.com" />
-        <br />
-        <button onclick="trimiteRezultatul()">Trimite rezultatul</button>
-        <p id="status"></p>
+        <h2>✅ Plata a fost efectuată cu succes!</h2>
+        <p>Rezultatul testului tău Nebshome a fost trimis automat pe adresa de email folosită la plată.</p>
+        <p>Te rugăm să verifici inboxul. Dacă nu îl găsești, uită-te și în folderul Spam.</p>
+        <p>Iți mulțumim că ai folosit testul psihologic Nebshome!</p>
     </div>
-
-    <script>
-        // Luăm profilul direct din URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const profile = urlParams.get("profile");
-
-        // Dacă nu există profil, redirectăm înapoi la test
-        if (!profile) {
-            document.body.innerHTML = "<h2 style='text-align:center;color:red'>❗Acces nepermis. Te rugăm să completezi testul mai întâi.</h2>";
-            setTimeout(() => {
-                window.location.href = "test.html";
-            }, 3000);
-        }
-
-        function trimiteRezultatul() {
-            const email = document.getElementById("email").value.trim();
-
-            if (!email) {
-                document.getElementById("status").textContent = "❗Te rugăm să introduci un email valid.";
-                return;
-            }
-
-            const payload = {
-                email: email,
-                profile: profile
-            };
-
-            fetch("https://hook.eu2.make.com/sgju26h1x7h7jcmbyxrsn8mpmrbr8xaw", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
-            .then((response) => {
-                if (response.ok) {
-                    document.getElementById("status").textContent = "✅ Rezultatul a fost trimis cu succes pe email!";
-                } else {
-                    document.getElementById("status").textContent = "❌ Eroare la trimitere. Încearcă din nou.";
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                document.getElementById("status").textContent = "❌ Eroare de rețea. Verifică conexiunea.";
-            });
-        }
-    </script>
 </body>
 </html>
