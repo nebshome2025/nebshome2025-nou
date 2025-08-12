@@ -144,7 +144,7 @@ window.onload = () => {
             })
         }).then(() => {
             // Redirecționează la Lemon
-            const base = "https://nebshome-test.lemonsqueezy.com/checkout/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
+            const base = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
             const u = new URL(base);
             u.searchParams.set("checkout[custom][session_id]", sessionId);
             u.searchParams.set("checkout[custom][profile]", profile);
