@@ -5,34 +5,140 @@
     <title>Rezultatul testului Nebshome</title>
     <style>
         body {
-            background-color: #f4f1eb;
             font-family: Arial, sans-serif;
-            padding: 40px;
-            text-align: center;
+            background-color: #f4f1eb;
+            margin: 0;
+            padding: 20px;
         }
         .container {
             max-width: 600px;
-            background-color: white;
-            padding: 30px;
             margin: auto;
-            border-radius: 10px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h2 {
+        h1 {
+            text-align: center;
             color: #333;
         }
-        p {
+        label {
+            font-weight: bold;
+        }
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #d8b59c;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
             font-size: 16px;
-            color: #555;
+        }
+        button:hover {
+            background-color: #c09e87;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>✅ Plata a fost efectuată cu succes!</h2>
-        <p>Rezultatul testului tău Nebshome a fost trimis automat pe adresa de email folosită la plată.</p>
-        <p>Te rugăm să verifici inboxul. Dacă nu îl găsești, uită-te și în folderul Spam.</p>
-        <p>Iți mulțumim că ai folosit testul psihologic Nebshome!</p>
+        <h1>Primește rezultatul testului tău Nebshome</h1>
+        <form id="emailForm">
+            <label for="email">Introdu adresa ta de email:</label>
+            <input type="email" id="email" name="email" placeholder="exemplu@email.com" required>
+            <button type="submit">Trimite rezultatul pe email</button>
+        </form>
+        <div class="message" id="statusMessage"></div>
+
+        <!-- Profiluri ascunse -->
+        <div id="profiles" class="hidden">
+            <div id="explorer">
+                <h2>Explorator Urban</h2>
+                <p>Ești mereu în mișcare, atras de energie, noutate și dinamism. Ai nevoie de o locuință aproape de zonele vibrante, cu acces rapid la cafenele, centre culturale și mijloace de transport...</p>
+            </div>
+            <div id="family">
+                <h2>Familist Structurat</h2>
+                <p>Casa ta este centrul universului familiei. Apreciezi ordinea, siguranța și proximitatea față de școli, parcuri și magazine esențiale...</p>
+            </div>
+            <div id="dreamer">
+                <h2>Visător Natural</h2>
+                <p>Îți place liniștea, natura și spațiile deschise. Locuința ideală este conectată cu mediul, cu vedere spre verdeață și locuri unde îți poți regăsi echilibrul...</p>
+            </div>
+            <div id="minimal">
+                <h2>Minimalist Conștient</h2>
+                <p>Preferi simplitatea și funcționalitatea. Ai nevoie de un spațiu eficient, ușor de întreținut, care să reflecte ordinea interioară...</p>
+            </div>
+            <div id="introvert">
+                <h2>Retraș Reflexiv</h2>
+                <p>Îți place intimitatea și liniștea. Cauți un loc retras, unde să te simți în siguranță și să îți poți organiza viața după propriile reguli...</p>
+            </div>
+            <div id="luxury">
+                <h2>Estet Sofisticat</h2>
+                <p>Apreciezi eleganța, calitatea și designul rafinat. Locuința ta trebuie să fie o expresie a bunului gust și a succesului personal...</p>
+            </div>
+            <div id="practical">
+                <h2>Pragmatic Eficient</h2>
+                <p>Ești orientat spre rezultate și funcționalitate. Locuința ta trebuie să fie practică, aproape de resurse și optimizată pentru activitățile zilnice...</p>
+            </div>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const profileKey = urlParams.get("profile");
+
+            if (!profileKey) {
+                document.getElementById("statusMessage").innerText = "Eroare: nu s-a găsit profilul.";
+                document.getElementById("emailForm").style.display = "none";
+                return;
+            }
+
+            const profileDiv = document.getElementById(profileKey);
+            if (!profileDiv) {
+                document.getElementById("statusMessage").innerText = "Eroare: profil invalid.";
+                document.getElementById("emailForm").style.display = "none";
+                return;
+            }
+
+            const profileTitle = profileDiv.querySelector("h2").innerText;
+            const profileText = profileDiv.querySelector("p").innerText;
+
+            document.getElementById("emailForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+                const email = document.getElementById("email").value;
+
+                fetch("send-email.php", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    body: `email=${encodeURIComponent(email)}&title=${encodeURIComponent(profileTitle)}&message=${encodeURIComponent(profileText)}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("statusMessage").innerText = "Rezultatul a fost trimis pe email!";
+                    document.getElementById("emailForm").reset();
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").innerText = "A apărut o eroare. Încearcă din nou.";
+                });
+            });
+        });
+    </script>
 </body>
 </html>
