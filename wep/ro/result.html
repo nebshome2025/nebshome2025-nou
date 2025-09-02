@@ -268,5 +268,54 @@
 
         render(profile);
     </script>
+    <!-- === Email form block === -->
+<div id="emailBlock" class="card center" style="display:none; margin-top:24px;">
+  <h3>Primește rezultatul pe email</h3>
+  <form id="sendForm">
+    <input type="email" id="email" required placeholder="exemplu@email.com" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:8px 0;">
+    <button type="submit" style="width:100%;padding:12px;border:none;border-radius:8px;background:#6b46c1;color:#fff;font-weight:600;cursor:pointer;">
+      Trimite rezultatul
+    </button>
+  </form>
+  <p id="sendMsg" class="muted" style="display:none;margin-top:8px;"></p>
+</div>
+
+<script>
+  // 🔗 PUNE AICI URL-UL TĂU DE WEBHOOK (format: https://hook.make.com/XXXX)
+  const WEBHOOK_URL = 'https://hook.make.com/XXXXXXXX';
+
+  function showEmail(profile) {
+    const block = document.getElementById('emailBlock');
+    if (!block) return;
+    block.style.display = 'block';
+
+    const form = document.getElementById('sendForm');
+    const msg  = document.getElementById('sendMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const lang  = (new URLSearchParams(location.search).get('lang')) || 'ro';
+
+      if (!email) return;
+
+      msg.style.display = 'block';
+      msg.textContent = 'Se trimite...';
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, profile, lang })
+        });
+
+        msg.textContent = res.ok ? 'Trimis! Verifică inboxul (și spam).' : 'Eroare la trimitere. Încearcă din nou.';
+      } catch (err) {
+        msg.textContent = 'Eroare de rețea. Verifică internetul și încearcă din nou.';
+      }
+    });
+  }
+</script>
+<!-- === /Email form block === -->
 </body>
 </html>
