@@ -1,235 +1,375 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rezultatul tău Nebshome</title>
-<style>
-:root{
-    --ink:#111; --muted:#67708a; --ring:#e7e9f3; --brand:#3a7afe;
-    --card:#ffffff; --bg:#f6f7fb;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;background:var(--bg);color:var(--ink)}
-.shell{max-width:980px;margin:40px auto;padding:0 16px}
-.hero{background:linear-gradient(135deg,#fff 0%,#fff 35%,#f7fbff 100%);border:1px solid var(--ring);border-radius:20px;padding:24px 28px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
-.brand{display:flex;gap:12px;align-items:center;margin-bottom:8px;color:var(--muted)}
-.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
-.title{font-size:clamp(24px,3vw,32px);line-height:1.25;margin:0 0 6px}
-.subtitle{margin:.25rem 0 1.25rem;color:var(--muted)}
-.badge{display:none;align-items:center;gap:8px;background:#fff;border:1px solid var(--ring);border-radius:14px;padding:6px 10px;width:max-content}
-.badge .emoji{font-size:18px}
-.card{display:none;margin-top:18px;background:#fff;border:1px solid var(--ring);border-radius:12px;padding:18px}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.block h6{margin:0 0 8px;color:var(--muted);letter-spacing:.02em;text-transform:uppercase;font-size:12px}
-.block p{margin:0;color:#232a3a}
-.ul{margin:0;padding-left:18px}
-.ul li{margin:.4rem 0}
-.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.btn{appearance:none;border:1px solid var(--ring);background:#fff;color:var(--ink);padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
-.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
-.note{margin-top:12px;color:var(--muted);font-size:14px}
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Rezultatul tău Nebshome</title>
+        <style>
+            :root {
+                --ink: #111;
+                --muted: #67708a;
+                --ring: #e7e9f3;
+                --brand: #3a7afe;
+                --card: #ffffff;
+                --bg: #f6f7fb;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                background: var(--bg);
+                color: var(--ink);
+            }
+            .shell {
+                max-width: 980px;
+                margin: 40px auto;
+                padding: 0 16px;
+            }
+            .hero {
+                background: linear-gradient(135deg, #fff 0%, #fff 35%, #f7fbff 100%);
+                border: 1px solid var(--ring);
+                border-radius: 20px;
+                padding: 24px 28px;
+                box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+            }
+            .brand {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                margin-bottom: 8px;
+                color: var(--muted);
+            }
+            .brand .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--brand);
+            }
+            .title {
+                font-size: clamp(24px, 3vw, 32px);
+                line-height: 1.25;
+                margin: 0 0 6px;
+            }
+            .subtitle {
+                margin: 0.25rem 0 1.25rem;
+                color: var(--muted);
+            }
+            .badge {
+                display: none;
+                align-items: center;
+                gap: 8px;
+                background: #fff;
+                border: 1px solid var(--ring);
+                border-radius: 14px;
+                padding: 6px 10px;
+                width: max-content;
+            }
+            .badge .emoji {
+                font-size: 18px;
+            }
+            .card {
+                display: none;
+                margin-top: 18px;
+                background: #fff;
+                border: 1px solid var(--ring);
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .grid {
+                display: grid;
+                gap: 16px;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            }
+            .block h6 {
+                margin: 0 0 8px;
+                color: var(--muted);
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+            .block p {
+                margin: 0;
+                color: #232a3a;
+            }
+            .ul {
+                margin: 0;
+                padding-left: 18px;
+            }
+            .ul li {
+                margin: 0.4rem 0;
+            }
+            .btns {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 12px;
+            }
+            .btn {
+                appearance: none;
+                border: 1px solid var(--ring);
+                background: #fff;
+                color: var(--ink);
+                padding: 10px 14px;
+                border-radius: 10px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .btn.primary {
+                background: var(--brand);
+                border-color: var(--brand);
+                color: #fff;
+            }
+            .note {
+                margin-top: 12px;
+                color: var(--muted);
+                font-size: 14px;
+            }
 
-.center{max-width:700px;margin:0 auto}
-.error{padding:18px;border-radius:14px;background:#fff;border:1px solid var(--ring);text-align:center}
-.error strong{color:#b42318}
-.input{width:100%;padding:12px;border:1px solid #d8dde6;border-radius:8px}
-.btn.submit{width:100%;padding:12px 18px;background:#6d6afe;border:1px solid #6d6afe;border-radius:10px;color:#fff;font-weight:700;margin-top:10px}
-.msg{display:none;margin-top:12px;color:var(--muted)}
-</style>
-</head>
-<body>
-<main class="shell">
-    <section class="hero">
-        <div class="brand"><span class="dot"></span><span>Nebshome</span></div>
-        <h1 class="title">Rezultatul tău Nebshome</h1>
-        <p class="subtitle">Recomandare personalizată pentru stilul tău de locuire</p>
+            .center {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .error {
+                padding: 18px;
+                border-radius: 14px;
+                background: #fff;
+                border: 1px solid var(--ring);
+                text-align: center;
+            }
+            .error strong {
+                color: #b42318;
+            }
+            .input {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #d8dde6;
+                border-radius: 8px;
+            }
+            .btn.submit {
+                width: 100%;
+                padding: 12px 18px;
+                background: #6d6afe;
+                border: 1px solid #6d6afe;
+                border-radius: 10px;
+                color: #fff;
+                font-weight: 700;
+                margin-top: 10px;
+            }
+            .msg {
+                display: none;
+                margin-top: 12px;
+                color: var(--muted);
+            }
+        </style>
+    </head>
+    <body>
+        <main class="shell">
+            <section class="hero">
+                <div class="brand"><span class="dot"></span><span>Nebshome</span></div>
+                <h1 class="title">Rezultatul tău Nebshome</h1>
+                <p class="subtitle">Recomandare personalizată pentru stilul tău de locuire</p>
 
-        <div id="badge" class="badge" style="display:none">
-            <span class="emoji" id="emoji">🏠</span>
-            <span id="badgeTitle">Profil</span>
-        </div>
-
-        <div class="card center" id="card" style="display:none">
-            <section>
-                <h2 id="head" style="margin:0 0 12px"></h2>
-
-                <div class="grid">
-                    <div class="block">
-                        <h6>Locuința ideală</h6>
-                        <p id="ideal"></p>
-                    </div>
-                    <div class="block">
-                        <h6>La ce să fii atent</h6>
-                        <ul id="checks" class="ul"></ul>
-                    </div>
+                <div id="badge" class="badge" style="display: none;">
+                    <span class="emoji" id="emoji">🏠</span>
+                    <span id="badgeTitle">Profil</span>
                 </div>
 
-                <div class="block" style="margin-top:8px">
-                    <h6>Sfat personal</h6>
-                    <p id="tip"></p>
+                <div class="card center" id="card" style="display: none;">
+                    <section>
+                        <h2 id="head" style="margin: 0 0 12px;"></h2>
+
+                        <div class="grid">
+                            <div class="block">
+                                <h6>Locuința ideală</h6>
+                                <p id="ideal"></p>
+                            </div>
+                            <div class="block">
+                                <h6>La ce să fii atent</h6>
+                                <ul id="checks" class="ul"></ul>
+                            </div>
+                        </div>
+
+                        <div class="block" style="margin-top: 8px;">
+                            <h6>Sfat personal</h6>
+                            <p id="tip"></p>
+                        </div>
+
+                        <div class="btns">
+                            <button class="btn" onclick="window.print()">Descarcă / Printează</button>
+                            <a class="btn" href="/ro/test.html">Reia testul</a>
+                        </div>
+                        <p class="note">ⓘ Analiză generată pe baza răspunsurilor tale.</p>
+                    </section>
                 </div>
 
-                <div class="btns">
-                    <button class="btn" onclick="window.print()">Descarcă / Printează</button>
-                    <a class="btn" href="/ro/test.html">Reia testul</a>
+                <!-- BLOCAJ EMAIL (APARE DUPĂ PLATĂ) -->
+                <div id="emailBlock" class="card center" style="display: none; margin-top: 12px;">
+                    <h3 style="margin: 0 0 10px;">Primește rezultatul pe email</h3>
+                    <form id="sendForm">
+                        <input type="email" id="email" required placeholder="exemplu@email.com" class="input" />
+                        <button type="submit" id="sendBtn" class="btn submit">Trimite rezultatul</button>
+                    </form>
+                    <p id="msg" class="msg"></p>
                 </div>
-                <p class="note">ⓘ Analiză generată pe baza răspunsurilor tale.</p>
+
+                <!-- FALLBACK -->
+                <div id="fallback" class="error" style="display: none; margin-top: 12px;"><strong>Profil indisponibil</strong> — te rugăm să reiei testul.</div>
             </section>
-        </div>
+        </main>
 
-        <!-- BLOCAJ EMAIL (APARE DUPĂ PLATĂ) -->
-        <div id="emailBlock" class="card center" style="display:none;margin-top:12px">
-            <h3 style="margin:0 0 10px">Primește rezultatul pe email</h3>
-            <form id="sendForm">
-                <input type="email" id="email" required placeholder="exemplu@email.com" class="input" />
-                <button type="submit" id="sendBtn" class="btn submit">Trimite rezultatul</button>
-            </form>
-            <p id="msg" class="msg"></p>
-        </div>
+        <script>
+            /** 1) Parametri din URL **/
+            const qs = new URLSearchParams(location.search);
+            const profile = (qs.get("profile") || "").toLowerCase().trim();
+            const lang = (qs.get("lang") || "ro").toLowerCase().trim();
+            const session = (qs.get("session_id") || "").trim();
+            const orderId = (qs.get("order_id") || "").trim();
 
-        <!-- FALLBACK -->
-        <div id="fallback" class="error" style="display:none;margin-top:12px">
-            <strong>Profil indisponibil</strong> — te rugăm să reiei testul.
-        </div>
-    </section>
-</main>
+            /** 2) Emojis per profil (pt. insignă) **/
+            const emojis = {
+                explorer: "🧭",
+                family: "👨‍👩‍👧",
+                dreamer: "🌿",
+                minimal: "✨",
+                introvert: "🔕",
+                visionary: "🌅",
+                builder: "🛠️",
+            };
 
-<script>
-/** 1) Parametri din URL **/
-const qs       = new URLSearchParams(location.search);
-const profile  = (qs.get('profile') || '').toLowerCase().trim();
-const lang     = (qs.get('lang')    || 'ro').toLowerCase().trim();
-const session  = (qs.get('session_id') || '').trim();
-const orderId  = (qs.get('order_id')   || '').trim();
+            /** 3) Conținut premium per profil **/
+            const profileData = {
+                explorer: {
+                    title: "Explorator Urban",
+                    lead: "Ești atras de energie, noutate și dinamism. Casa ta te susține să fii conectat cu orașul, dar îți oferă și un colț de reîncărcare.",
+                    ideal: "Apartament modern în centru sau lângă infrastructură activă; plan deschis, lumină naturală abundentă, soluții smart.",
+                    checks: ["Acces rapid la cafenele, cultură, parcuri și transport.", "Iluminat inteligent și izolare acustică decentă.", "Spații flexibile pentru socializare și retragere."],
+                    tip: "Alege un „hub personal” de unde poți porni spre oraș, dar unde te poți întoarce pentru claritate și energie.",
+                },
+                family: {
+                    title: "Familist Structurat",
+                    lead: "Pui pe primul loc securitatea, ordinea și timpul împreună. Casa devine alinul comun al familiei.",
+                    ideal: "Casă/ apartament mai generos într-un cartier liniștit; acces pe jos la servicii; camere bine funcționate.",
+                    checks: ["Gândește pe 5+ ani (grădiniță/școală).", "Verifică vecinătatea și comunitatea.", "Confort și funcționalitate înainte de extra-design."],
+                    tip: "Fă-ți o „hartă a rutinei” zilnice – spații pentru joacă, lucru, relaxare – fiecare își găsește locul.",
+                },
+                dreamer: {
+                    title: "Visător al Naturii",
+                    lead: "Ai nevoie de liniște, lumină și texturi naturale. Ai nevoie de un spațiu care inspiră și calmează.",
+                    ideal: "Apartament cu vedere spre verde sau casă la marginea orașului; materiale naturale, plante vii, ferestre mari.",
+                    checks: ["Evită interioare reci și încărcate.", "Creează zone pentru retragere și creativitate.", "Observă cum spațiul îți influențează starea."],
+                    tip: "Transformă-ți locuința într-o sursă de energie blândă: lumină, plante, textile moi, paletă pământie.",
+                },
+                minimal: {
+                    title: "Minimalist Conștient",
+                    lead: "Prețuiești simplitatea, claritatea și ordinea. Spațiul curat îți susține focusul.",
+                    ideal: "Studio/ apartament cu plan clar; tonuri deschise; piese esențiale; eficiență la fiecare metru.",
+                    checks: ["Evită supraîncărcarea – păstrează doar ce are sens.", "Caută ergonomii & flexibilitate în mobilier.", "Maxim lumină & aer; mai puțin obiect, mai multă calitate."],
+                    tip: "Casa ta e oglinda minții tale: ordine în vedere, iar simplitatea îți menține echilibrul liniștit.",
+                },
+                introvert: {
+                    title: "Introvert Reflexiv",
+                    lead: "Apreciezi liniștea, intimitatea și controlul asupra timpului tău. Zgomotul te obosește.",
+                    ideal: "Locuință retrasă sau bine izolată fonic; birou/colț personal; control al luminii și al expunerii.",
+                    checks: ["Uită-te la scoruri de zgomot & ferestre de calitate.", "Alege cartiere cu densitate mai scăzută.", "Creează un ritual de seară: loc fix pentru reflecție."],
+                    tip: "Alege un stil în care poți să te întorci la tine: liniștea îți amplifică potențialul.",
+                },
+                visionary: {
+                    title: "Vizionari Strategici",
+                    lead: "Ești orientat pe obiective și idei. Ai nevoie de spațiu care te concentrează și te proiectează spre următorul nivel.",
+                    ideal: "Loft/ apartament cu vedere amplă; birou dedicat; zone pentru concentrare și vizualizare.",
+                    checks: ["Prioritizează un ancoraj vizual pentru ținte.", "Separare clară între lucru și relaxare.", "Tehnologii care reduc fricțiunea."],
+                    tip: "Lasă-ți casa să-ți fie platformă de lansare: creează un „colț de sprint” care îți calibrează ambiția.",
+                },
+                builder: {
+                    title: "Creator Pragmatic",
+                    lead: "Om de acțiune: practicul și finalul primează. Funcționalitatea îți economisește timp și energie.",
+                    ideal: "Apartament cu plan logic, trasee scurte; materiale robuste și ușor de întreținut.",
+                    checks: ["Zonare strict pe funcțiuni (lucru, depozitare, odihnă).", "Componente rezistente, întreținere simplă.", "Prioritizează soluții care cresc randamentul zilnic."],
+                    tip: "Gândește locuința ca pe un instrument: fiecare element trebuie să muncească pentru eficiența ta.",
+                },
+            };
 
-/** 2) Emojis per profil (pt. insignă) **/
-const emojis = {
-    explorer:"🧭", family:"👨‍👩‍👧", dreamer:"🌿",
-    minimal:"✨",  introvert:"🔕",  visionary:"🌅", builder:"🛠️"
-};
+            /** 4) Render + afișare formular email la nevoie **/
+            function render(profileKey) {
+                const data = profileData[profileKey];
+                const badge = document.getElementById("badge");
+                const card = document.getElementById("card");
 
-/** 3) Conținut premium per profil **/
-const profileData = {
-    explorer:{
-        title:"Explorator Urban",
-        lead:"Ești atras de energie, noutate și dinamism. Casa ta te susține să fii conectat cu orașul, dar îți oferă și un colț de reîncărcare.",
-        ideal:"Apartament modern în centru sau lângă infrastructură activă; plan deschis, lumină naturală abundentă, soluții smart.",
-        checks:["Acces rapid la cafenele, cultură, parcuri și transport.","Iluminat inteligent și izolare acustică decentă.","Spații flexibile pentru socializare și retragere."],
-        tip:"Alege un „hub personal” de unde poți porni spre oraș, dar unde te poți întoarce pentru claritate și energie."
-    },
-    family:{
-        title:"Familist Structurat",
-        lead:"Pui pe primul loc securitatea, ordinea și timpul împreună. Casa devine alinul comun al familiei.",
-        ideal:"Casă/ apartament mai generos într-un cartier liniștit; acces pe jos la servicii; camere bine funcționate.",
-        checks:["Gândește pe 5+ ani (grădiniță/școală).","Verifică vecinătatea și comunitatea.","Confort și funcționalitate înainte de extra-design."],
-        tip:"Fă-ți o „hartă a rutinei” zilnice – spații pentru joacă, lucru, relaxare – fiecare își găsește locul."
-    },
-    dreamer:{
-        title:"Visător al Naturii",
-        lead:"Ai nevoie de liniște, lumină și texturi naturale. Ai nevoie de un spațiu care inspiră și calmează.",
-        ideal:"Apartament cu vedere spre verde sau casă la marginea orașului; materiale naturale, plante vii, ferestre mari.",
-        checks:["Evită interioare reci și încărcate.","Creează zone pentru retragere și creativitate.","Observă cum spațiul îți influențează starea."],
-        tip:"Transformă-ți locuința într-o sursă de energie blândă: lumină, plante, textile moi, paletă pământie."
-    },
-    minimal:{
-        title:"Minimalist Conștient",
-        lead:"Prețuiești simplitatea, claritatea și ordinea. Spațiul curat îți susține focusul.",
-        ideal:"Studio/ apartament cu plan clar; tonuri deschise; piese esențiale; eficiență la fiecare metru.",
-        checks:["Evită supraîncărcarea – păstrează doar ce are sens.","Caută ergonomii & flexibilitate în mobilier.","Maxim lumină & aer; mai puțin obiect, mai multă calitate."],
-        tip:"Casa ta e oglinda minții tale: ordine în vedere, iar simplitatea îți menține echilibrul liniștit."
-    },
-    introvert:{
-        title:"Introvert Reflexiv",
-        lead:"Apreciezi liniștea, intimitatea și controlul asupra timpului tău. Zgomotul te obosește.",
-        ideal:"Locuință retrasă sau bine izolată fonic; birou/colț personal; control al luminii și al expunerii.",
-        checks:["Uită-te la scoruri de zgomot & ferestre de calitate.","Alege cartiere cu densitate mai scăzută.","Creează un ritual de seară: loc fix pentru reflecție."],
-        tip:"Alege un stil în care poți să te întorci la tine: liniștea îți amplifică potențialul."
-    },
-    visionary:{
-        title:"Vizionari Strategici",
-        lead:"Ești orientat pe obiective și idei. Ai nevoie de spațiu care te concentrează și te proiectează spre următorul nivel.",
-        ideal:"Loft/ apartament cu vedere amplă; birou dedicat; zone pentru concentrare și vizualizare.",
-        checks:["Prioritizează un ancoraj vizual pentru ținte.","Separare clară între lucru și relaxare.","Tehnologii care reduc fricțiunea."],
-        tip:"Lasă-ți casa să-ți fie platformă de lansare: creează un „colț de sprint” care îți calibrează ambiția."
-    },
-    builder:{
-        title:"Creator Pragmatic",
-        lead:"Om de acțiune: practicul și finalul primează. Funcționalitatea îți economisește timp și energie.",
-        ideal:"Apartament cu plan logic, trasee scurte; materiale robuste și ușor de întreținut.",
-        checks:["Zonare strict pe funcțiuni (lucru, depozitare, odihnă).","Componente rezistente, întreținere simplă.","Prioritizează soluții care cresc randamentul zilnic."],
-        tip:"Gândește locuința ca pe un instrument: fiecare element trebuie să muncească pentru eficiența ta."
-    }
-};
+                if (!data) {
+                    document.getElementById("fallback").style.display = "block";
+                    return;
+                }
 
-/** 4) Render + afișare formular email la nevoie **/
-function render(profileKey){
-    const data = profileData[profileKey];
-    const badge = document.getElementById('badge');
-    const card  = document.getElementById('card');
+                document.getElementById("emoji").textContent = (emojis[profileKey] || "🏠") + " ";
+                document.getElementById("badgeTitle").textContent = data.title;
+                document.getElementById("head").textContent = data.lead;
+                document.getElementById("ideal").textContent = data.ideal;
 
-    if(!data){ document.getElementById('fallback').style.display='block'; return; }
+                const ul = document.getElementById("checks");
+                ul.innerHTML = "";
+                data.checks.forEach((c) => {
+                    const li = document.createElement("li");
+                    li.textContent = c;
+                    ul.appendChild(li);
+                });
 
-    document.getElementById('emoji').textContent    = (emojis[profileKey] || '🏠') + ' ';
-    document.getElementById('badgeTitle').textContent = data.title;
-    document.getElementById('head').textContent     = data.lead;
-    document.getElementById('ideal').textContent    = data.ideal;
+                document.getElementById("tip").textContent = data.tip;
 
-    const ul = document.getElementById('checks');
-    ul.innerHTML='';
-    data.checks.forEach(c => { const li=document.createElement('li'); li.textContent=c; ul.appendChild(li); });
+                badge.style.display = "inline-flex";
+                card.style.display = "block";
 
-    document.getElementById('tip').textContent = data.tip;
+                // dacă venim din checkout (ai buton View result), afișează formularul
+                const fromCheckout = qs.get("from") === "checkout" || !qs.get("direct");
+                if (fromCheckout) document.getElementById("emailBlock").style.display = "block";
+            }
 
-    badge.style.display = 'inline-flex';
-    card.style.display  = 'block';
+            /** 5) Validează profil & pornește **/
+            const allowed = Object.keys(profileData);
+            if (!allowed.includes(profile)) {
+                // dacă nu primim profil corect, nu forțăm nimic
+                document.getElementById("fallback").style.display = "block";
+            } else {
+                render(profile);
+            }
 
-    // dacă venim din checkout (ai buton View result), afișează formularul
-    const fromCheckout = qs.get('from') === 'checkout' || !qs.get('direct');
-    if(fromCheckout) document.getElementById('emailBlock').style.display='block';
-}
+            /** 6) Trimitere la Make **/
+            const WEBHOOK_URL = "https://PUTEȚI_PUNE_AICI_URLUL_TĂU_DE_WEBHOOK"; // <-- schimbă!
 
-/** 5) Validează profil & pornește **/
-const allowed = Object.keys(profileData);
-if (!allowed.includes(profile)) {
-    // dacă nu primim profil corect, nu forțăm nimic
-    document.getElementById('fallback').style.display='block';
-} else {
-    render(profile);
-}
+            (function initEmailSend() {
+                const form = document.getElementById("sendForm");
+                if (!form) return;
+                const msg = document.getElementById("msg");
+                const btn = document.getElementById("sendBtn");
 
-/** 6) Trimitere la Make **/
-const WEBHOOK_URL = "https://PUTEȚI_PUNE_AICI_URLUL_TĂU_DE_WEBHOOK"; // <-- schimbă!
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const email = (document.getElementById("email").value || "").trim();
+                    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        msg.style.display = "block";
+                        msg.textContent = "Adresă email invalidă.";
+                        return;
+                    }
 
-(function initEmailSend(){
-    const form = document.getElementById('sendForm');
-    if(!form) return;
-    const msg  = document.getElementById('msg');
-    const btn  = document.getElementById('sendBtn');
+                    btn.disabled = true;
+                    msg.style.display = "block";
+                    msg.textContent = "Se trimite…";
 
-    form.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        const email = (document.getElementById('email').value || '').trim();
-        if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-            msg.style.display='block'; msg.textContent='Adresă email invalidă.'; return;
-        }
-
-        btn.disabled=true; msg.style.display='block'; msg.textContent='Se trimite…';
-
-        try{
-            const res = await fetch(WEBHOOK_URL, {
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify({ email, profile, lang, session_id: session, order_id: orderId })
-            });
-            msg.textContent = res.ok ? 'Trimis! Verifică inbox-ul (și spam).' : 'Eroare la trimitere. Încearcă din nou.';
-        }catch(_){
-            msg.textContent = 'Rețea indisponibilă. Încearcă din nou.';
-        }finally{
-            btn.disabled=false;
-        }
-    });
-})();
-</script>
-</body>
-</html></div></section></main>
+                    try {
+                        const res = await fetch(WEBHOOK_URL, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ email, profile, lang, session_id: session, order_id: orderId }),
+                        });
+                        msg.textContent = res.ok ? "Trimis! Verifică inbox-ul (și spam)." : "Eroare la trimitere. Încearcă din nou.";
+                    } catch (_) {
+                        msg.textContent = "Rețea indisponibilă. Încearcă din nou.";
+                    } finally {
+                        btn.disabled = false;
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>
