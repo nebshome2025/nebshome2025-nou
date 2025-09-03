@@ -11,13 +11,12 @@
         .shell{max-width:760px;margin:48px auto;padding:0 18px}
         .card{background:#fff;border:1px solid var(--ring);border-radius:14px;padding:22px 18px;box-shadow:0 6px 24px rgba(15,23,42,.06)}
         h1{font-size:clamp(20px,3vw,28px);margin:0 0 6px}
-        .muted{color:#6b7280;font-size:14px}
-        .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ring);background:#f8fafc;border-radius:999px;padding:6px 10px;font-weight:600;margin:10px 0 0}
-        .chip small{color:#6b7280;font-weight:600}
-        .list{margin:14px 0 0;padding-left:18px}
-        .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-        .btn{padding:10px 14px;border:1px solid var(--ring);border-radius:8px;background:#111827;color:#fff;font-weight:600;text-decoration:none;display:inline-block}
+        .muted{color:#6b7280;font-size:15px}
+        .highlight{margin-top:18px;padding:14px;border-left:4px solid var(--brand);background:#f9f8ff;border-radius:6px}
+        .btns{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+        .btn{padding:12px 18px;border:1px solid var(--ring);border-radius:8px;cursor:pointer;font-weight:600;font-size:15px;text-decoration:none;display:inline-block}
         .btn.secondary{background:#fff;color:#111827}
+        .btn.primary{background:#111827;color:#fff}
     </style>
 </head>
 <body>
@@ -26,43 +25,19 @@
             <h1>Rezultatul tău Nebshome</h1>
             <p class="muted">Recomandarea detaliată ți-a fost <strong>trimisă pe email</strong>.</p>
 
-            <!-- Insignă profil (opțional, doar pentru feedback vizual) -->
-            
-
-            <ul class="list muted">
-                <li>Verifică inboxul. Dacă nu găsești mesajul, uită-te și în „Spam” / „Promotions”.</li>
-                <li>Dacă ai introdus emailul greșit la plată, reia testul și folosește adresa corectă.</li>
+            <ul class="muted">
+                <li>✔️ Verifică inboxul. Dacă nu găsești mesajul, uită-te și în „Spam” / „Promotions”.</li>
             </ul>
 
+            <div class="highlight">
+                🔑 În curând pe <strong>Nebshome.com</strong>: soluții și ghiduri practice care te pot ajuta să economisești câteva mii de euro la vânzare sau cumpărare de imobil.
+            </div>
+
             <div class="btns">
-                <a href="/ro/index.html" class="btn secondary">Înapoi acasă</a>
-                <a href="/ro/test.html" class="btn secondary">Reia testul</a>
+                <a href="index.html" class="btn secondary">Înapoi acasă</a>
+                <a href="test.html" class="btn secondary">Reia testul</a>
             </div>
         </div>
     </main>
-
-    <script>
-        // Citește parametrii din URL (ex: ?profile=explorer&lang=ro)
-        const params  = new URLSearchParams(location.search);
-        const profile = (params.get("profile") || "").toLowerCase().trim();
-
-        // Doar pentru afișarea unei insigne mici (nu se trimite nimic de aici)
-        const chipMap = {
-            explorer: { text: "Explorator Urban", emoji: "🧭" },
-            family:   { text: "Familist Structurat", emoji: "👨‍👩‍👧‍👦" },
-            dreamer:  { text: "Visător al Naturii", emoji: "🌿" },
-            minimal:  { text: "Minimalist Conștient", emoji: "📐" },
-            introvert:{ text: "Introvert Reflexiv", emoji: "🛋️" },
-            visionary:{ text: "Vizionar Strategic", emoji: "🎯" },
-            builder:  { text: "Creator Pragmatic", emoji: "🧰" },
-        };
-
-        (function showChip(){
-            if (!profile || !chipMap[profile]) return;
-            document.getElementById("chipText").textContent  = chipMap[profile].text;
-            document.getElementById("chipEmoji").textContent = chipMap[profile].emoji;
-            document.getElementById("chip").style.display = "inline-flex";
-        })();
-    </script>
 </body>
 </html>
