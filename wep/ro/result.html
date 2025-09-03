@@ -12,15 +12,12 @@
         .card{background:#fff;border:1px solid var(--ring);border-radius:14px;padding:22px 18px;box-shadow:0 6px 24px rgba(15,23,42,.06)}
         h1{font-size:clamp(20px,3vw,28px);margin:0 0 6px}
         .muted{color:#6b7280;font-size:14px}
-        .email{margin-top:18px;display:grid;gap:12px}
-        input[type="email"]{width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:16px}
-        button{padding:12px 16px;border:1px solid var(--ring);border-radius:8px;background:#111827;color:#fff;font-weight:600;cursor:pointer}
-        button:disabled{opacity:.6;cursor:not-allowed}
-        .msg{margin-top:10px;font-size:14px}
-        .ok{color:#166534}
-        .err{color:#b42318}
-        .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ring);background:#f8fafc;border-radius:999px;padding:6px 10px;font-weight:600;margin-top:8px}
+        .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ring);background:#f8fafc;border-radius:999px;padding:6px 10px;font-weight:600;margin:10px 0 0}
         .chip small{color:#6b7280;font-weight:600}
+        .list{margin:14px 0 0;padding-left:18px}
+        .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+        .btn{padding:10px 14px;border:1px solid var(--ring);border-radius:8px;background:#111827;color:#fff;font-weight:600;text-decoration:none;display:inline-block}
+        .btn.secondary{background:#fff;color:#111827}
     </style>
 </head>
 <body>
@@ -29,40 +26,38 @@
             <h1>Rezultatul tău Nebshome</h1>
             <p class="muted">Recomandarea detaliată ți-a fost <strong>trimisă pe email</strong>.</p>
 
+            <!-- Insignă profil (opțional, doar pentru feedback vizual) -->
             <div id="chip" class="chip" style="display:none">
                 <span id="chipEmoji">🏷️</span>
                 <span><small>Profil</small> <span id="chipText"></span></span>
             </div>
 
-            <section class="email card" style="margin-top:16px">
-                <h3 style="margin:0 0 6px">Trimite rezultatul pe email</h3>
-                <form id="f">
-                    <input id="email" name="email" type="email" required placeholder="exemplu@email.com" />
-                    <button id="btn" type="submit">Trimite rezultatul</button>
-                </form>
-                <div id="msg" class="msg muted" style="display:none"></div>
-            </section>
+            <ul class="list muted">
+                <li>Verifică inboxul. Dacă nu găsești mesajul, uită-te și în „Spam” / „Promotions”.</li>
+                <li>Dacă ai introdus emailul greșit la plată, reia testul și folosește adresa corectă.</li>
+            </ul>
 
-            <p class="muted" style="margin-top:14px">Dacă nu găsești mesajul, verifică folderul „Spam” / „Promotions”.</p>
+            <div class="btns">
+                <a href="/ro/index.html" class="btn secondary">Înapoi acasă</a>
+                <a href="/ro/test.html" class="btn secondary">Reia testul</a>
+            </div>
         </div>
     </main>
 
     <script>
-        // Webhook URL din Make
-        const WEBHOOK_URL = "https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v";
-
+        // Citește parametrii din URL (ex: ?profile=explorer&lang=ro)
         const params  = new URLSearchParams(location.search);
         const profile = (params.get("profile") || "").toLowerCase().trim();
-        const lang    = (params.get("lang")    || "ro").toLowerCase().trim();
 
+        // Doar pentru afișarea unei insigne mici (nu se trimite nimic de aici)
         const chipMap = {
-            explorer:   { text: "Explorator Urban", emoji: "🧭" },
-            family:     { text: "Familist Structurat", emoji: "👨‍👩‍👧‍👦" },
-            dreamer:    { text: "Visător al Naturii", emoji: "🌿" },
-            minimal:    { text: "Minimalist Conștient", emoji: "📐" },
-            introvert:  { text: "Introvert Reflexiv", emoji: "🛋️" },
-            visionary:  { text: "Vizionar Strategic", emoji: "🎯" },
-            builder:    { text: "Creator Pragmatic", emoji: "🧰" },
+            explorer: { text: "Explorator Urban", emoji: "🧭" },
+            family:   { text: "Familist Structurat", emoji: "👨‍👩‍👧‍👦" },
+            dreamer:  { text: "Visător al Naturii", emoji: "🌿" },
+            minimal:  { text: "Minimalist Conștient", emoji: "📐" },
+            introvert:{ text: "Introvert Reflexiv", emoji: "🛋️" },
+            visionary:{ text: "Vizionar Strategic", emoji: "🎯" },
+            builder:  { text: "Creator Pragmatic", emoji: "🧰" },
         };
 
         (function showChip(){
@@ -71,42 +66,6 @@
             document.getElementById("chipEmoji").textContent = chipMap[profile].emoji;
             document.getElementById("chip").style.display = "inline-flex";
         })();
-
-        const form = document.getElementById("f");
-        const msg  = document.getElementById("msg");
-        const btn  = document.getElementById("btn");
-
-        form.addEventListener("submit", async (e)=>{
-            e.preventDefault();
-            const email = document.getElementById("email").value.trim();
-            if (!email) return;
-
-            btn.disabled = true;
-            msg.style.display = "block";
-            msg.className = "msg muted";
-            msg.textContent = "Se trimite...";
-
-            try{
-                const res = await fetch(WEBHOOK_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, profile, lang })
-                });
-
-                if(res.ok){
-                    msg.className = "msg ok";
-                    msg.textContent = "Trimis! Verifică inboxul (și spam).";
-                }else{
-                    msg.className = "msg err";
-                    msg.textContent = "Eroare la trimitere. Încearcă din nou.";
-                }
-            }catch(_){
-                msg.className = "msg err";
-                msg.textContent = "Rețea indisponibilă. Încearcă din nou.";
-            }finally{
-                btn.disabled = false;
-            }
-        });
     </script>
 </body>
-</html></form>
+</html>
