@@ -5,18 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Rezultatul tău Nebshome</title>
     <style>
-        :root{--ink:#1f1f1f;--ring:#e5e7eb;--brand:#865ae0;}
+        :root{
+            --ink:#1f1f1f;
+            --ring:#e5e7eb;
+            --brand:#d8b59c;
+        }
         *{box-sizing:border-box}
-        body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fafafa;color:var(--ink)}
+        body{
+            margin:0;
+            font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+            background:#f4f1eb;
+            color:var(--ink)
+        }
         .shell{max-width:760px;margin:48px auto;padding:0 18px}
-        .card{background:#fff;border:1px solid var(--ring);border-radius:14px;padding:22px 18px;box-shadow:0 6px 24px rgba(15,23,42,.06)}
+        .card{
+            background:#fff;
+            border:1px solid var(--ring);
+            border-radius:14px;
+            padding:22px 18px;
+            box-shadow:0 6px 24px rgba(15,23,42,.06)
+        }
         h1{font-size:clamp(20px,3vw,28px);margin:0 0 6px}
-        .muted{color:#6b7280;font-size:15px}
-        .highlight{margin-top:18px;padding:14px;border-left:4px solid var(--brand);background:#f9f8ff;border-radius:6px}
-        .btns{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
-        .btn{padding:12px 18px;border:1px solid var(--ring);border-radius:8px;cursor:pointer;font-weight:600;font-size:15px;text-decoration:none;display:inline-block}
+        .muted{color:#6b7280;font-size:14px;margin-top:6px}
+        ul{padding-left:18px;margin-top:8px}
+        li{margin-bottom:6px}
+        .info{
+            margin-top:18px;
+            padding:14px;
+            border:1px solid var(--ring);
+            border-radius:8px;
+            background:#f8fafc;
+            font-size:15px;
+            line-height:1.5;
+        }
+        .btns{display:flex;gap:12px;margin-top:18px}
+        .btn{
+            flex:1;
+            text-align:center;
+            padding:12px 14px;
+            border:1px solid var(--ring);
+            border-radius:8px;
+            background:var(--brand);
+            color:#fff;
+            font-weight:600;
+            cursor:pointer;
+            text-decoration:none;
+        }
         .btn.secondary{background:#fff;color:#111827}
-        .btn.primary{background:#111827;color:#fff}
     </style>
 </head>
 <body>
@@ -25,17 +60,17 @@
             <h1>Rezultatul tău Nebshome</h1>
             <p class="muted">Recomandarea detaliată ți-a fost <strong>trimisă pe email</strong>.</p>
 
-            <ul class="muted">
+            <ul>
                 <li>✔️ Verifică inboxul. Dacă nu găsești mesajul, uită-te și în „Spam” / „Promotions”.</li>
             </ul>
 
-            <div class="highlight">
-                🔑 În curând pe <strong>Nebshome.com</strong>: soluții și ghiduri practice care te pot ajuta să economisești câteva mii de euro la vânzare sau cumpărare de imobil.
+            <div class="info">
+                🔑 În curând pe <strong>Nebshome.com</strong>: soluții și ghiduri practice care te ajută să vinzi și să cumperi imobile mai avantajos, economisind timp și bani.
             </div>
 
             <div class="btns">
-                <a href="index.html" class="btn secondary">Înapoi acasă</a>
-                <a href="test.html" class="btn secondary">Reia testul</a>
+                <a href="/index.html" class="btn secondary">Înapoi acasă</a>
+                <a href="/ro/test.html" class="btn">Reia testul</a>
             </div>
         </div>
     </main>
