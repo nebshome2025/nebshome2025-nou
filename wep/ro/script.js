@@ -1,246 +1,187 @@
-/* ====== CONFIG ====== */
+/*
+// --- CONFIG ---
 const WEBHOOK_URL = "https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v";
+const LEMON_BUY_URL = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
 const LANG = "ro";
 
-const PROFILES = [
-    "explorer",   // 0
-    "family",     // 1
-    "dreamer",    // 2
-    "minimal",    // 3
-    "introvert",  // 4
-    "luxury",     // 5
-    "practical"   // 6
-];
+// 7 profiluri (slug = cheile din Sheets: <slug>_ro)
+const PROFILES = ["explorer","family","dreamer","minimal","introvert","luxury","practical"];
 
-// Întrebările și opțiunile (exemplu, adaptează după nevoie)
-const questionsData = [
+// Întrebări (varianta lungă)
+const QUESTIONS = [
     {
-        q: "Cum îți petreci weekendurile?",
+        q: "Cum îți petreci de obicei weekendurile?",
         a: [
-            "Activ, descopăr orașul",
-            "Cu familia",
-            "În natură",
-            "Fac curățenie/organizare",
-            "Singur, relaxare acasă"
+            "Le petrec activ, cu prieteni, evenimente sau explorând orașul.",
+            "Prefer să stau cu familia, într-o atmosferă liniștită acasă.",
+            "Ies în natură pentru a mă reîncărca și a mă conecta cu mine.",
+            "Fac curățenie, citesc și mă dezvolt personal.",
+            "Îmi place să fiu singur, să reflectez și să îmi reîncarc energia."
         ]
     },
     {
-        q: "Ce e important într-o locuință?",
+        q: "Ce e important pentru tine într-o locuință?",
         a: [
-            "Locația centrală",
-            "Spațiul pentru familie",
-            "Apropierea de natură",
-            "Funcționalitatea",
-            "Liniștea"
+            "Locație convenabilă, aproape de serviciu și de tot ce am nevoie.",
+            "Spațiu generos și libertate de mișcare în interior.",
+            "Conexiunea cu natura – lumină naturală, verdeață, aer curat.",
+            "Funcționalitate maximă – totul bine organizat și util.",
+            "Liniște și intimitate, să mă simt în siguranță și pace."
         ]
     },
     {
-        q: "Stil preferat?",
+        q: "Ce stil ți se potrivește cel mai mult?",
         a: [
-            "Modern/tehnologic",
-            "Clasic",
-            "Eco",
-            "Minimalist",
-            "Loft/industrial"
+            "Modern, cu linii curate și soluții tehnologice inteligente.",
+            "Clasic, cu materiale nobile și un aer tradițional.",
+            "Eco – materiale naturale, plante vii, armonie cu natura.",
+            "Minimalist – ordine vizuală și spațiu pentru claritate mentală.",
+            "Loft – spațiu creativ, deschis, cu estetică industrială."
         ]
     },
     {
-        q: "Ce te deranjează?",
+        q: "Ce te deranjează cel mai mult?",
         a: [
-            "Rutina",
-            "Dezordinea",
-            "Zgomotul",
-            "Haosul",
-            "Restricțiile"
+            "Rutina și plictiseala – am nevoie de activitate și varietate.",
+            "Dezordinea – mă stresează, vreau curățenie și organizare.",
+            "Zgomotul – îmi afectează starea, prefer liniștea.",
+            "Haosul – am nevoie de control și structură.",
+            "Restricțiile – îmi place libertatea deplină."
         ]
     },
     {
-        q: "Unde ai locui?",
+        q: "Unde ți-ar plăcea cel mai mult să locuiești?",
         a: [
-            "Centru vibrant",
-            "Cartier liniștit",
-            "Marginea/natură",
-            "Studio eficient",
-            "Casă cu birou"
+            "În centrul orașului, în mijlocul acțiunii.",
+            "Într-un cartier liniștit, potrivit pentru familie.",
+            "La marginea orașului sau în natură, cu aer curat.",
+            "Într-un studio compact și eficient.",
+            "Într-o casă cu birou propriu și colț de liniște."
         ]
     },
     {
-        q: "Munca necesită mai mult:",
+        q: "Munca ta necesită mai mult:",
         a: [
-            "Mişcare",
-            "Stabilitate",
-            "Creativitate",
-            "Organizare",
-            "Concentrare"
+            "Mișcare, interacțiune și activitate constantă.",
+            "Stabilitate, reguli clare și predictibilitate.",
+            "Creativitate, libertate și soluții originale.",
+            "Organizare, planificare și sistematizare.",
+            "Concentrare profundă și lucru în liniște."
         ]
     },
     {
-        q: "Relația cu vecinii?",
+        q: "Cum te raportezi la vecini?",
         a: [
-            "Neutră",
-            "Prietenoși",
-            "Intimitate",
-            "Doar liniște",
-            "Ideal fără vecini"
+            "Neutră – important e să nu mă deranjeze.",
+            "Îmi place să am vecini prietenoși, relații sociale.",
+            "Prefer intimitatea și puțină interacțiune.",
+            "Vreau doar liniște și respectarea limitelor personale.",
+            "Ideal – fără vecini, control total al spațiului meu."
         ]
     },
     {
-        q: "Casa de vis:",
+        q: "Casa ta de vis trebuie să aibă:",
         a: [
-            "Priveliște",
-            "Copii/familie",
-            "Grădină/terasă",
-            "Puțin mobilier",
-            "Colț personal"
+            "Priveliște panoramică – inspirație și deschidere.",
+            "Spațiu de joacă pentru copii și familie.",
+            "Grădină sau terasă verde – relaxare în aer liber.",
+            "Cât mai puțin mobilier – spațiu liber, claritate.",
+            "Bibliotecă sau colț personal pentru studiu/reflecție."
         ]
     },
     {
         q: "Cum alegi mobilierul?",
         a: [
-            "După tendințe",
-            "Confort",
-            "Materiale naturale",
-            "Practic",
-            "Unic/personalizat"
+            "Urmăresc ultimele tendințe – modern și stilat.",
+            "Confortul și ergonomia sunt cele mai importante.",
+            "Prefer materiale naturale și ecologice.",
+            "Practic – totul trebuie să aibă un scop clar.",
+            "Unic și personalizat – vreau caracter și originalitate."
         ]
     },
     {
-        q: "Scop principal în viață?",
+        q: "Care e scopul tău principal în viață?",
         a: [
-            "Succes",
-            "Familie",
-            "Armonie",
-            "Ordine",
-            "Evoluție"
+            "Succes, recunoaștere și împlinirea ambițiilor.",
+            "Familie puternică, dragoste și siguranță.",
+            "Armonie interioară și echilibru sufletesc.",
+            "Ordine în toate domeniile vieții.",
+            "Evoluție continuă și dezvoltare personală."
         ]
     }
 ];
 
-/* 
-    weights7[questionIndex][optionIndex] = [exp,fam,dre,min,int,lux,pra]
-*/
-const weights7 = [
-    [
-        [5,0,0,0,0,1,0],
-        [0,5,0,0,0,0,1],
-        [0,0,5,0,0,0,0],
-        [0,0,0,4,0,0,2],
-        [0,0,0,0,5,0,0],
-    ],
-    [
-        [4,0,0,0,0,1,1],
-        [0,3,0,1,0,0,2],
-        [0,0,5,0,0,0,0],
-        [0,0,0,5,0,0,2],
-        [0,0,0,0,5,0,0],
-    ],
-    [
-        [4,0,0,0,0,2,0],
-        [0,1,0,0,0,4,0],
-        [0,0,5,0,0,0,0],
-        [0,0,0,5,0,0,0],
-        [2,0,0,0,0,2,0],
-    ],
-    [
-        [0,0,0,0,0,0,0],
-        [0,0,0,4,0,0,2],
-        [0,0,0,0,5,0,0],
-        [0,4,0,1,0,0,2],
-        [3,0,0,0,0,0,0],
-    ],
-    [
-        [5,0,0,0,0,1,0],
-        [0,5,0,0,0,0,0],
-        [0,0,5,0,0,0,0],
-        [0,0,0,5,0,0,2],
-        [0,0,0,0,5,0,0],
-    ],
-    [
-        [4,0,0,0,0,1,0],
-        [0,4,0,2,0,0,1],
-        [0,0,4,0,0,1,0],
-        [0,0,0,5,0,0,2],
-        [0,0,0,0,5,0,0],
-    ],
-    [
-        [0,0,0,0,0,0,0],
-        [2,3,0,0,0,0,0],
-        [0,0,0,0,5,0,0],
-        [0,0,0,0,5,0,0],
-        [3,0,0,0,1,0,0],
-    ],
-    [
-        [3,0,0,0,0,2,0],
-        [0,5,0,0,0,0,0],
-        [0,0,5,0,0,0,0],
-        [0,0,0,5,0,0,2],
-        [0,0,0,0,4,0,0],
-    ],
-    [
-        [3,0,0,0,0,2,0],
-        [0,2,0,0,0,0,3],
-        [0,0,4,0,0,0,1],
-        [0,0,0,5,0,0,2],
-        [0,0,0,0,0,3,2],
-    ],
-    [
-        [4,0,0,0,0,2,0],
-        [0,5,0,0,0,0,0],
-        [0,0,5,0,0,0,0],
-        [0,0,0,5,0,0,2],
-        [0,0,0,0,4,0,1],
-    ],
+// Maparea răspunsurilor la cele 7 profiluri (câte 1 profil pentru fiecare opțiune)
+const MAP = [
+    ["explorer","family","dreamer","minimal","introvert"],
+    ["explorer","family","dreamer","practical","introvert"],
+    ["luxury","family","dreamer","minimal","explorer"],
+    ["explorer","minimal","introvert","practical","dreamer"],
+    ["explorer","family","dreamer","minimal","introvert"],
+    ["explorer","family","dreamer","practical","introvert"],
+    ["minimal","family","introvert","introvert","dreamer"],
+    ["luxury","family","dreamer","minimal","introvert"],
+    ["luxury","family","dreamer","practical","explorer"],
+    ["luxury","family","dreamer","minimal","explorer"]
 ];
 
-/* ====== LOGICĂ TEST ====== */
-window.onload = () => {
-    const form = document.getElementById("testForm");
-    const questionsDiv = document.getElementById("questions");
+// --- RENDER întrebări ---
+const questionsDiv = document.getElementById("questions");
+QUESTIONS.forEach((q,i)=>{
+    const b = document.createElement("div");
+    b.innerHTML =
+        `<p class="q">${i+1}. ${q.q}</p>` +
+        q.a.map((ans,idx)=>(
+            `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label>`
+        )).join("");
+    questionsDiv.appendChild(b);
+});
 
-    questionsData.forEach((q, i) => {
-        const block = document.createElement("div");
-        block.innerHTML =
-            `<p><strong>${i + 1}. ${q.q}</strong></p>` +
-            q.a.map((ans, idx) =>
-                `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
-            ).join('');
-        questionsDiv.appendChild(block);
-    });
+// util: ID sesiune
+function newId(){
+    if (crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 's_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);
+}
 
-    form.onsubmit = async (e) => {
-        e.preventDefault();
+// --- SUBMIT ---
+document.getElementById("testForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
 
-        const score = Array(PROFILES.length).fill(0);
+    const score = Object.fromEntries(PROFILES.map(p=>[p,0]));
+    const chosen = [];
 
-        for (let i = 0; i < questionsData.length; i++) {
-            const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value, 10);
-            const w = weights7[i][val];
-            for (let p = 0; p < PROFILES.length; p++) {
-                score[p] += w[p];
-            }
+    for(let i=0;i<QUESTIONS.length;i++){
+        const el = document.querySelector(`input[name="q${i}"]:checked`);
+        if(!el){ alert("Răspunde la toate întrebările."); return; }
+        const idx = parseInt(el.value,10);
+        const prof = MAP[i][idx];
+        score[prof] += 1;
+        chosen.push({q:i, a:idx, prof});
+    }
+
+    const max = Math.max(...Object.values(score));
+    let winners = PROFILES.filter(p=>score[p]===max);
+    if (winners.length>1){
+        for(let i=chosen.length-1;i>=0;i--){
+            const p = chosen[i].prof;
+            if (winners.includes(p)){ winners=[p]; break; }
         }
+    }
+    const profile = winners[0];
 
-        const maxScore = Math.max(...score);
-        const maxIndex = score.indexOf(maxScore);
-        const profile = PROFILES[maxIndex];
+    const session_id = newId();
 
-        const sessionId = crypto.randomUUID();
+    try{
+        await fetch(WEBHOOK_URL, {
+            method:"POST",
+            headers:{ "Content-Type":"application/json" },
+            body: JSON.stringify({ profile, lang: LANG, session_id })
+        });
+    }catch(_){}
 
-        try {
-            await fetch(WEBHOOK_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ profile, lang: LANG, session_id: sessionId })
-            });
-        } catch (_) {
-            console.warn("Webhook Make a eșuat (continui la checkout)");
-        }
-
-        const base = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
-        const u = new URL(base);
-        u.searchParams.set("checkout[custom][session_id]", sessionId);
-        u.searchParams.set("checkout[custom][profile]", profile);
-        u.searchParams.set("checkout[custom][lang]", LANG);
-        window.location.href = u.toString();
-    };
-};
+    const u = new URL(LEMON_BUY_URL);
+    u.searchParams.set("checkout[custom][session_id]", session_id);
+    u.searchParams.set("checkout[custom][profile]", profile);
+    u.searchParams.set("checkout[custom][lang]", LANG);
+    window.location.href = u.toString();
+});
