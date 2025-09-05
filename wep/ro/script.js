@@ -107,11 +107,12 @@ const questionsData = [
     }
 ];
 
+// ----------------
 // 7 profiluri
+// ----------------
 const PROFILES = ['explorer','family','dreamer','minimal','introvert','luxury','practical'];
 
-// MAP: pentru fiecare întrebare (0..9), fiecare opțiune (0..4) -> profil
-// Ajustează liniile ca să calibrezi „greutatea”.
+// MAP: întrebare (0..9) × opțiune (0..4) -> profil
 const MAP = [
     ['explorer','family','dreamer','minimal','introvert'], // Q1
     ['explorer','family','dreamer','minimal','introvert'], // Q2
@@ -122,10 +123,12 @@ const MAP = [
     ['introvert','family','practical','introvert','minimal'],// Q7
     ['dreamer','family','dreamer','minimal','introvert'],  // Q8
     ['luxury','family','dreamer','practical','minimal'],   // Q9
-    ['explorer','family','dreamer','minimal','introvert'], // Q10
+    ['explorer','family','dreamer','minimal','introvert']  // Q10
 ];
 
-// ——— UI render (construiește întrebările pe pagină) ———
+// ----------------
+// Render UI
+// ----------------
 (function renderQuestions(){
     const form = document.getElementById("testForm");
     const qs   = document.getElementById("questions");
@@ -145,16 +148,16 @@ const MAP = [
     form.addEventListener("submit", onSubmit);
 })();
 
-// ——— Submit: calculează scorul + trimite către Make + redirect Lemon ———
+// ----------------
+// Submit
+// ----------------
 async function onSubmit(e){
     e.preventDefault();
 
-    // inițializează scorurile
     const counts = {
         explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0
     };
 
-    // pentru fiecare întrebare luăm opțiunea bifată și mapăm la profil
     for (let i=0; i<questionsData.length; i++){
         const picked = document.querySelector(`input[name="q${i}"]:checked`);
         if (!picked) { alert("Răspunde la toate întrebările."); return; }
@@ -163,13 +166,9 @@ async function onSubmit(e){
         counts[prof] = (counts[prof] || 0) + 1;
     }
 
-    // profilul cu scor maxim
     const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
-
-    // session id
     const sessionId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
 
-    // TRIMITERE la Make (webhook-ul tău)
     try{
         await fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v",{
             method:"POST",
@@ -178,10 +177,8 @@ async function onSubmit(e){
         });
     }catch(err){
         console.error("Eroare trimitere la Make:", err);
-        // continuăm redirectul oricum
     }
 
-    // Redirect la Lemon Squeezy + parametri
     const base = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
     const u = new URL(base);
     u.searchParams.set("checkout[custom][session_id]", sessionId);
