@@ -101,7 +101,22 @@ const questionsData = [
     }
 ];
 
-const weights = ['explorer', 'family', 'dreamer', 'minimal', 'introvert'];
+// 7 profile
+const PROFILES = ['explorer','family','dreamer','minimal','introvert','luxury','practical'];
+
+// Mapping: întrebare -> opțiune -> profil
+const MAP = [
+  ['explorer','family','dreamer','minimal','introvert'],
+  ['explorer','family','dreamer','minimal','introvert'],
+  ['dreamer','luxury','minimal','explorer','practical'],
+  ['introvert','minimal','dreamer','practical','family'],
+  ['explorer','family','dreamer','minimal','introvert'],
+  ['practical','family','dreamer','minimal','introvert'],
+  ['introvert','family','practical','introvert','minimal'],
+  ['dreamer','family','dreamer','minimal','introvert'],
+  ['luxury','family','dreamer','practical','minimal'],
+  ['explorer','family','dreamer','minimal','introvert'],
+];
 
 window.onload = () => {
     const form = document.getElementById("testForm");
@@ -121,14 +136,19 @@ window.onload = () => {
     form.onsubmit = function (e) {
         e.preventDefault();
 
-        // Calculează profilul
-        let score = [0, 0, 0, 0, 0];
-        for (let i = 0; i < 10; i++) {
-            const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-            score[val]++;
+        // Score pentru fiecare profil
+        const counts = { explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0 };
+
+        for (let i = 0; i < questionsData.length; i++) {
+            const picked = document.querySelector(`input[name="q${i}"]:checked`);
+            if (!picked) { alert("Răspunde la toate întrebările."); return; }
+            const opt = parseInt(picked.value, 10);
+            const prof = MAP[i][opt];
+            counts[prof]++;
         }
-        const maxIndex = score.indexOf(Math.max(...score));
-        const profile = weights[maxIndex];
+
+        // Alegem profilul cu scorul maxim
+        const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
 
         // Generează session_id
         const sessionId = crypto.randomUUID();
