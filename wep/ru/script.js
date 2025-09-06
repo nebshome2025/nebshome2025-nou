@@ -178,12 +178,12 @@ window.onload = () => {
       });
     }catch(err){ console.error("Ошибка отправки на Make:", err); }
 
-const base = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
-const u = new URL(base);
-u.searchParams.set("checkout[custom][session_id]", sessionId);
-u.searchParams.set("checkout[custom][profile]",    profile);
-u.searchParams.set("checkout[custom][lang]",       "ru");
-window.location.href = u.toString();
+    const base = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
+    const u = new URL(base);
+    u.searchParams.set("checkout[custom][session_id]", sessionId);
+    u.searchParams.set("checkout[custom][profile]",    profile);
+    u.searchParams.set("checkout[custom][lang]",       "ru");
+    window.location.href = u.toString();
 
 
   };
