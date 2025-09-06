@@ -175,7 +175,6 @@ async function onSubmit(e){
         weighted[prof] = (weighted[prof] || 0) + (Q_WEIGHTS[i] || 1);
       }
 
-    // const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
     const sessionId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
     const entries = Object.entries(counts).sort((a,b)=>{
       if (b[1] !== a[1]) return b[1] - a[1];
