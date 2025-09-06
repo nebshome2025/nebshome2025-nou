@@ -1,9 +1,3 @@
-/*
-// -------------------------------
-// Test Nebshome (RO) — script.js
-// -------------------------------
-
-// 10 întrebări × 5 răspunsuri
 const questionsData = [
     {
         q: "Cum îți petreci de obicei weekendurile?",
@@ -148,9 +142,7 @@ const MAP = [
     form.addEventListener("submit", onSubmit);
 })();
 
-// ----------------
-// Submit
-// ----------------
+
 async function onSubmit(e){
     e.preventDefault();
 
