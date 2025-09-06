@@ -101,10 +101,7 @@ const questionsData = [
     }
 ];
 
-// --- 7 profiles (identic cu RO/RU)
 const PROFILES = ['explorer','family','dreamer','minimal','introvert','luxury','practical'];
-
-// --- MAP (10 questions × 5 options) -> profile
 const MAP = [
   ['explorer','family','dreamer','minimal','introvert'], // Q1
   ['explorer','family','dreamer','minimal','introvert'], // Q2
