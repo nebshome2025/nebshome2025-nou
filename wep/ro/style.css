@@ -8,7 +8,7 @@
 }
 body {
     margin: 0;
-    background: #fafafa;
+    background: #f4f1eb;
     color: var(--ink);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
@@ -57,3 +57,26 @@ input[type="radio"] {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+button[type="submit"]{
+    background-color: #d8b59c;
+    color: white;
+    padding: 14px 28px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+button[type="submit"]:hover {
+    background-color: #caa68c;
+}
+
+
+
+
+
+
+
