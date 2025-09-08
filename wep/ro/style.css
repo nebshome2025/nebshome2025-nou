@@ -17,12 +17,12 @@ body {
     margin: 40px auto;
     padding: 0 18px;
 }
-.card {
+/*.card {
     border: 1px solid var(--ring);
     border-radius: 14px;
     padding: 22px 18px;
     box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
-}
+}*/
 h2 {
     margin: 0 0 14px;
 }
@@ -61,7 +61,11 @@ button[type="submit"]{
 button[type="submit"]:hover {
     background-color: #caa68c;
 }
-
+#testForm {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
 
 
