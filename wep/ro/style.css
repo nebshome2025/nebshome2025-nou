@@ -43,20 +43,6 @@ label {
 input[type="radio"] {
     margin-right: 8px;
 }
-/*.btn {
-    margin-top: 10px;
-    padding: 12px 16px;
-    border: 1px solid var(--ring);
-    border-radius: 10px;
-    background: #111827;
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-}
-.btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}*/
 
 button[type="submit"]{
     background-color: #d8b59c;
