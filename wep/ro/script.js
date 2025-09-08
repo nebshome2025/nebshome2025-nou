@@ -134,7 +134,7 @@ const MAP = [
         block.innerHTML =
             `<p><strong>${i+1}. ${q.q}</strong></p>` +
             q.a.map((ans, idx) =>
-                `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
+                `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label>`
             ).join('');
         qs.appendChild(block);
     });
