@@ -39,6 +39,7 @@ label {
     display: block;
     margin: 8px 0;
     line-height: 1.4;
+    font-size: 20px;
 }
 input[type="radio"] {
     margin-right: 8px;
