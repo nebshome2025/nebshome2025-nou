@@ -2,7 +2,7 @@
 // -------------------------------
 // Test Nebshome (RO) — script.js
 // -------------------------------
-
+*/
 // 10 întrebări × 5 răspunsuri
 const questionsData = [
     {
