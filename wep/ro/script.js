@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 
 // -------------------------------
 // Test Nebshome (RO) — script.js
 // -------------------------------
 
 // 10 întrebări × 5 răspunsuri
+=======
+>>>>>>> 0f74b898329fb0472d9d393e1b9071e6437ed5f6
 const questionsData = [
     {
         q: "Cum îți petreci de obicei weekendurile?",
@@ -136,7 +139,7 @@ const MAP = [
         block.innerHTML =
             `<p><strong>${i+1}. ${q.q}</strong></p>` +
             q.a.map((ans, idx) =>
-                `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
+                `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label>`
             ).join('');
         qs.appendChild(block);
     });
@@ -144,24 +147,60 @@ const MAP = [
     form.addEventListener("submit", onSubmit);
 })();
 
+<<<<<<< HEAD
 // ——— Submit ———
+=======
+const PRIORITY = [
+    "explorer",
+    "family",
+    "dreamer",
+    "minimal",
+    "introvert",
+    "luxury",
+    "practical"
+];
+const Q_WEIGHTS = [1,1,1.2,1,1,1,1,1.1,1,1];
+
+function hash32(str){
+  let h = 2166136261 >>> 0;
+  for (let i=0; i<str.length; i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+>>>>>>> 0f74b898329fb0472d9d393e1b9071e6437ed5f6
 async function onSubmit(e){
     e.preventDefault();
-
-    const counts = {
-        explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0
-    };
-
+    const counts = { explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0 };
+    const weighted = { explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0 };
     for (let i=0; i<questionsData.length; i++){
         const picked = document.querySelector(`input[name="q${i}"]:checked`);
         if (!picked) { alert("Răspunde la toate întrebările."); return; }
         const opt = parseInt(picked.value, 10);
         const prof = MAP[i][opt];
+<<<<<<< HEAD
         counts[prof]++;
     }
+=======
+        counts[prof]   = (counts[prof]   || 0) + 1;
+        weighted[prof] = (weighted[prof] || 0) + (Q_WEIGHTS[i] || 1);
+      }
+>>>>>>> 0f74b898329fb0472d9d393e1b9071e6437ed5f6
 
-    const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
     const sessionId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+    const entries = Object.entries(counts).sort((a,b)=>{
+      if (b[1] !== a[1]) return b[1] - a[1];
+      const wa = weighted[a[0]] || 0, wb = weighted[b[0]] || 0;
+      if (wb !== wa) return wb - wa;
+      const pa = PRIORITY.indexOf(a[0]), pb = PRIORITY.indexOf(b[0]);
+      if (pa !== pb) return pa - pb;
+      const ha = hash32(sessionId + ":" + a[0]);
+      const hb = hash32(sessionId + ":" + b[0]);
+      return ha - hb;
+    });
+    const profile = entries[0][0];
 
     try{
         await fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v",{

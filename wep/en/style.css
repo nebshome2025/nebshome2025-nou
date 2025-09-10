@@ -7,7 +7,7 @@ body {
     font-size: 20px;
     line-height: 1.8;
 }
-
+ 
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -32,6 +32,7 @@ p {
     font-size: 19px;
     margin-bottom: 30px;
 }
+
 
 .start-button {
     display: inline-block;
@@ -63,6 +64,7 @@ p {
 input[type="radio"] {
     transform: scale(1.4);
     margin-right: 10px;
+
 }
 
 .submit-button {
@@ -98,3 +100,14 @@ input[type="radio"] {
         font-size: 19px;
     }
 }
+
+@media only screen and (max-width: 540px) {
+    label{
+        font-size: 30px;
+    }
+    input[type="radio"] {
+        width: 30px;
+        height: 30px;
+    }
+}
+

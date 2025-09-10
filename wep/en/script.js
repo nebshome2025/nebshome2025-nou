@@ -101,29 +101,88 @@ const questionsData = [
     }
 ];
 
-const weights = ['explorer', 'family', 'dreamer', 'minimal', 'introvert'];
+const PROFILES = ['explorer','family','dreamer','minimal','introvert','luxury','practical'];
+const MAP = [
+  ['explorer','family','dreamer','minimal','introvert'], // Q1
+  ['explorer','family','dreamer','minimal','introvert'], // Q2
+  ['dreamer','luxury','minimal','explorer','practical'], // Q3
+  ['introvert','minimal','dreamer','practical','family'],// Q4
+  ['explorer','family','dreamer','minimal','introvert'], // Q5
+  ['practical','family','dreamer','minimal','introvert'],// Q6
+  ['introvert','family','practical','introvert','minimal'],// Q7
+  ['dreamer','family','dreamer','minimal','introvert'],  // Q8
+  ['luxury','family','dreamer','practical','minimal'],   // Q9
+  ['explorer','family','dreamer','minimal','introvert']  // Q10
+];
+
+const PRIORITY  = ['explorer','family','dreamer','minimal','introvert','luxury','practical'];
+const Q_WEIGHTS = [1,1,1.2,1,1,1,1,1.1,1,1];
+function hash32(str){
+  let h = 2166136261 >>> 0;
+  for (let i=0; i<str.length; i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
 
 window.onload = () => {
-    const form = document.getElementById("testForm");
-    const questionsDiv = document.getElementById("questions");
+  const form = document.getElementById("testForm");
+  const questionsDiv = document.getElementById("questions");
+  questionsData.forEach((q, i) => {
+    const block = document.createElement("div");
+    block.className = "q-block";
+    block.innerHTML =
+      `<p class="question-title"><strong>${i+1}. ${q.q}</strong></p>` +
+      q.a.map((ans, idx) =>
+        `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
+      ).join('');
+    questionsDiv.appendChild(block);
+  });
 
-    questionsData.forEach((q, i) => {
-        const block = document.createElement("div");
-        block.innerHTML = `<p><strong>${i + 1}. ${q.q}</strong></p>` + q.a.map((ans, idx) =>
-            `<label><input type="radio" name="q${i}" value="${idx}" required> ${ans}</label><br>`
-        ).join('');
-        questionsDiv.appendChild(block);
+  form.onsubmit = async function(e){
+    e.preventDefault();
+
+    const counts   = { explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0 };
+    const weighted = { explorer:0,family:0,dreamer:0,minimal:0,introvert:0,luxury:0,practical:0 };
+
+    for (let i=0; i<questionsData.length; i++){
+      const picked = document.querySelector(`input[name="q${i}"]:checked`);
+      if (!picked) { alert("Please answer all questions."); return; }
+      const opt = parseInt(picked.value, 10);
+      const prof = MAP[i][opt];
+      counts[prof]   += 1;
+      weighted[prof] += (Q_WEIGHTS[i] || 1);
+    }
+
+    const sessionId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+    const entries = Object.entries(counts).sort((a,b)=>{
+      if (b[1] !== a[1]) return b[1] - a[1];
+      const wa = weighted[a[0]] || 0, wb = weighted[b[0]] || 0;
+      if (wb !== wa) return wb - wa;
+      const pa = PRIORITY.indexOf(a[0]), pb = PRIORITY.indexOf(b[0]);
+      if (pa !== pb) return pa - pb;
+      const ha = hash32(sessionId + ":" + a[0]);
+      const hb = hash32(sessionId + ":" + b[0]);
+      return ha - hb;
     });
 
-    form.onsubmit = function(e) {
-        e.preventDefault();
-        let score = [0, 0, 0, 0, 0];
-        for (let i = 0; i < 10; i++) {
-            const val = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-            score[val]++;
-        }
-        const maxIndex = score.indexOf(Math.max(...score));
-        const profile = weights[maxIndex];
-        window.location.href = `result.html?profile=${profile}`;
-    };
+    const profile = entries[0][0];
+    try{
+      await fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v",{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ profile, lang:"en", session_id: sessionId })
+      });
+    }catch(err){
+      console.error("Error sending to Make:", err);
+    }
+
+    const base = "https://nebshome-test.lemonsqueezy.com/buy/052e7ec5-1de0-498f-a838-0fd476694ebf";
+    const u = new URL(base);
+    u.searchParams.set("checkout[custom][session_id]", sessionId);
+    u.searchParams.set("checkout[custom][profile]",    profile);
+    u.searchParams.set("checkout[custom][lang]",       "en");
+    window.location.href = u.toString();
+  };
 };
