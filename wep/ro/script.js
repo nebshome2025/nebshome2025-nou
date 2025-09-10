@@ -1,4 +1,4 @@
-/*
+
 // -------------------------------
 // Test Nebshome (RO) — script.js
 // -------------------------------
@@ -107,12 +107,10 @@ const questionsData = [
     }
 ];
 
-// ----------------
 // 7 profiluri
-// ----------------
 const PROFILES = ['explorer','family','dreamer','minimal','introvert','luxury','practical'];
 
-// MAP: întrebare (0..9) × opțiune (0..4) -> profil
+// MAP: pentru fiecare întrebare (0..9), fiecare opțiune (0..4) -> profil
 const MAP = [
     ['explorer','family','dreamer','minimal','introvert'], // Q1
     ['explorer','family','dreamer','minimal','introvert'], // Q2
@@ -123,12 +121,10 @@ const MAP = [
     ['introvert','family','practical','introvert','minimal'],// Q7
     ['dreamer','family','dreamer','minimal','introvert'],  // Q8
     ['luxury','family','dreamer','practical','minimal'],   // Q9
-    ['explorer','family','dreamer','minimal','introvert']  // Q10
+    ['explorer','family','dreamer','minimal','introvert'], // Q10
 ];
 
-// ----------------
-// Render UI
-// ----------------
+// ——— UI render ———
 (function renderQuestions(){
     const form = document.getElementById("testForm");
     const qs   = document.getElementById("questions");
@@ -148,9 +144,7 @@ const MAP = [
     form.addEventListener("submit", onSubmit);
 })();
 
-// ----------------
-// Submit
-// ----------------
+// ——— Submit ———
 async function onSubmit(e){
     e.preventDefault();
 
@@ -163,7 +157,7 @@ async function onSubmit(e){
         if (!picked) { alert("Răspunde la toate întrebările."); return; }
         const opt = parseInt(picked.value, 10);
         const prof = MAP[i][opt];
-        counts[prof] = (counts[prof] || 0) + 1;
+        counts[prof]++;
     }
 
     const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
