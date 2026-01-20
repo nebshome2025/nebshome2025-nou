@@ -172,6 +172,17 @@ async function onSubmit(e){
     }catch(err){
         console.error("Eroare trimitere la Make:", err);
     }
+try{
+        await fetch("https://hook.eu2.make.com/a6qpye9ny1q8ny9dym7q2xy8w8g85b9v",{
+            method:"POST",
+            headers: { "Content-Type":"application/json" },
+            body: JSON.stringify({ profile, lang:"ro", session_id: sessionId })
+        });
+    }catch(err){
+        console.error("Eroare trimitere la Make:", err);
+    }
 
+    window.location.href = "result.html";
+}
    
 }
