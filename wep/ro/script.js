@@ -163,15 +163,20 @@ async function onSubmit(e){
     const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
     const sessionId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
 
- try {
-        await fetch("https://hook.eu2.make.com/a6qpye9ny1q8ny9dym7q2xy8w8g85b9v", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ profile, lang: "ro", session_id: sessionId })
+    try{
+        await fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v",{
+            method:"POST",
+            headers:{ "Content-Type":"application/json" },
+            body: JSON.stringify({ profile, lang:"ro", session_id: sessionId })
         });
-    } catch (err) {
+    }catch(err){
         console.error("Eroare trimitere la Make:", err);
     }
 
-    window.location.href = "result.html";
+    const base = "https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
+    const u = new URL(base);
+    u.searchParams.set("checkout[custom][session_id]", sessionId);
+    u.searchParams.set("checkout[custom][profile]",    profile);
+    u.searchParams.set("checkout[custom][lang]",       "ro");
+    window.location.href = u.toString();
 }
