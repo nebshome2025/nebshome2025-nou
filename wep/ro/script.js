@@ -173,10 +173,5 @@ async function onSubmit(e){
         console.error("Eroare trimitere la Make:", err);
     }
 
-    const base = "https://nebshome-test.lemonsqueezy.com/buy/c3e30291-0298-4e83-a0d6-c769adea72fb";
-    const u = new URL(base);
-    u.searchParams.set("checkout[custom][session_id]", sessionId);
-    u.searchParams.set("checkout[custom][profile]",    profile);
-    u.searchParams.set("checkout[custom][lang]",       "ro");
-    window.location.href = u.toString();
+   
 }
