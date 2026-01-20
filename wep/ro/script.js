@@ -163,7 +163,7 @@ async function onSubmit(e){
     const profile = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
     const sessionId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
 
-  try {
+ try {
         await fetch("https://hook.eu2.make.com/a6qpye9ny1q8ny9dym7q2xy8w8g85b9v", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
