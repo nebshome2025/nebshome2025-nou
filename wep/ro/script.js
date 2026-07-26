@@ -174,3 +174,4 @@ async function onSubmit(e){
     }
 
    window.location.href = "result.html";
+   }
