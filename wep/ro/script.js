@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       // Trimitere date catre MakeWebhook
-      fetch("AICI_PUI_LINKUL_TĂU_DE_WEBHOOK_DIN_MAKE", {
+      fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
