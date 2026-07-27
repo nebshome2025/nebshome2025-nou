@@ -100,21 +100,23 @@ const questionsData = [
     ]
   }
 ];
+
 document.addEventListener("DOMContentLoaded", function () {
-  const container = document.getElementById("questions-container");
+  const container = document.getElementById("questions");
   if (!container) return;
 
+  // Generare intrebari in div-ul #questions
   questionsData.forEach((item, index) => {
     const qDiv = document.createElement("div");
-    qDiv.className = "question-block";
-    qDiv.style.marginBottom = "25px";
+    qDiv.style.marginBottom = "20px";
+    qDiv.style.textAlign = "left";
 
-    let html = `<p style="font-weight: bold; font-size: 16px; margin-bottom: 10px;">${item.q}</p>`;
+    let html = `<p style="font-weight: bold; margin-bottom: 8px;">${item.q}</p>`;
 
-    item.a.forEach((option, optIndex) => {
+    item.a.forEach((option) => {
       html += `
-        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-          <input type="radio" name="question_${index}" value="${optIndex + 1}" style="margin-right: 8px;">
+        <label style="display: block; margin-bottom: 5px; cursor: pointer;">
+          <input type="radio" name="q${index + 1}" value="${option}" required style="margin-right: 8px;">
           ${option}
         </label>
       `;
@@ -123,4 +125,38 @@ document.addEventListener("DOMContentLoaded", function () {
     qDiv.innerHTML = html;
     container.appendChild(qDiv);
   });
+
+  // Trimitere formular
+  const form = document.getElementById("testForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("userEmail").value;
+      const answers = {};
+
+      questionsData.forEach((_, index) => {
+        const selected = document.querySelector(`input[name="q${index + 1}"]:checked`);
+        answers[`q${index + 1}`] = selected ? selected.value : "";
+      });
+
+      const payload = {
+        email: email,
+        answers: answers
+      };
+
+      // Trimitere date catre MakeWebhook
+      fetch("AICI_PUI_LINKUL_TĂU_DE_WEBHOOK_DIN_MAKE", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        alert("Răspunsurile au fost trimise cu succes!");
+      })
+      .catch((err) => {
+        console.error("Eroare la trimitere:", err);
+      });
+    });
+  }
 });
