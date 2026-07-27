@@ -100,3 +100,27 @@ const questionsData = [
     ]
   }
 ];
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementById("questions-container");
+  if (!container) return;
+
+  questionsData.forEach((item, index) => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "question-block";
+    qDiv.style.marginBottom = "25px";
+
+    let html = `<p style="font-weight: bold; font-size: 16px; margin-bottom: 10px;">${item.q}</p>`;
+
+    item.a.forEach((option, optIndex) => {
+      html += `
+        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+          <input type="radio" name="question_${index}" value="${optIndex + 1}" style="margin-right: 8px;">
+          ${option}
+        </label>
+      `;
+    });
+
+    qDiv.innerHTML = html;
+    container.appendChild(qDiv);
+  });
+});
