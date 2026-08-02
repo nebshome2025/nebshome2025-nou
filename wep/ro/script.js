@@ -99,8 +99,56 @@ const questionsData = [
       "5 - Acord total"
     ]
   }
-];
-
+{
+  q: "11. Prefer o locuință care să îmi ofere mult spațiu exterior (balcon, terasă sau grădină).",
+  a: [
+    "1 - Dezacord total",
+    "2 - Dezacord",
+    "3 - Neutral",
+    "4 - Acord",
+    "5 - Acord total"
+  ]
+},
+{
+  q: "12. Pentru mine, cartierul ideal este unul liniștit, cu spații verzi și aproape de natură.",
+  a: [
+    "1 - Dezacord total",
+    "2 - Dezacord",
+    "3 - Neutral",
+    "4 - Acord",
+    "5 - Acord total"
+  ]
+},
+{
+  q: "13. Parcarea, izolația fonică bună sau spațiile mari de depozitare sunt obligatorii pentru mine.",
+  a: [
+    "1 - Dezacord total",
+    "2 - Dezacord",
+    "3 - Neutral",
+    "4 - Acord",
+    "5 - Acord total"
+  ]
+}
+{
+  q: "14. Visul meu este o locuință cu un design modern, deschis (open-space), cu multă lumină naturală.",
+  a: [
+    "1 - Dezacord total",
+    "2 - Dezacord",
+    "3 - Neutral",
+    "4 - Acord",
+    "5 - Acord total"
+  ]
+},
+{
+  q: "15. Aș face compromisuri la suprafața casei pentru a avea o curte privată sau o grădină.",
+  a: [
+    "1 - Dezacord total",
+    "2 - Dezacord",
+    "3 - Neutral",
+    "4 - Acord",
+    "5 - Acord total"
+  ]
+}
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("questions");
   if (!container) return;
