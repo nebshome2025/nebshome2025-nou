@@ -98,7 +98,7 @@ const questionsData = [
       "4 - Acord",
       "5 - Acord total"
     ]
-  }
+  },
 {
   q: "11. Prefer o locuință care să îmi ofere mult spațiu exterior (balcon, terasă sau grădină).",
   a: [
@@ -128,7 +128,7 @@ const questionsData = [
     "4 - Acord",
     "5 - Acord total"
   ]
-}
+},
 {
   q: "14. Visul meu este o locuință cu un design modern, deschis (open-space), cu multă lumină naturală.",
   a: [
@@ -149,6 +149,7 @@ const questionsData = [
     "5 - Acord total"
   ]
 }
+]; 
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("questions");
   if (!container) return;
