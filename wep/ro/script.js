@@ -100,55 +100,55 @@ const questionsData = [
     ]
   },
 {
-  q: "11. Prefer o locuință care să îmi ofere mult spațiu exterior (balcon, terasă sau grădină).",
-  a: [
-    "1 - Dezacord total",
-    "2 - Dezacord",
-    "3 - Neutral",
-    "4 - Acord",
-    "5 - Acord total"
-  ]
-},
-{
-  q: "12. Pentru mine, cartierul ideal este unul liniștit, cu spații verzi și aproape de natură.",
-  a: [
-    "1 - Dezacord total",
-    "2 - Dezacord",
-    "3 - Neutral",
-    "4 - Acord",
-    "5 - Acord total"
-  ]
-},
-{
-  q: "13. Parcarea, izolația fonică bună sau spațiile mari de depozitare sunt obligatorii pentru mine.",
-  a: [
-    "1 - Dezacord total",
-    "2 - Dezacord",
-    "3 - Neutral",
-    "4 - Acord",
-    "5 - Acord total"
-  ]
-},
-{
-  q: "14. Visul meu este o locuință cu un design modern, deschis (open-space), cu multă lumină naturală.",
-  a: [
-    "1 - Dezacord total",
-    "2 - Dezacord",
-    "3 - Neutral",
-    "4 - Acord",
-    "5 - Acord total"
-  ]
-},
-{
-  q: "15. Aș face compromisuri la suprafața casei pentru a avea o curte privată sau o grădină.",
-  a: [
-    "1 - Dezacord total",
-    "2 - Dezacord",
-    "3 - Neutral",
-    "4 - Acord",
-    "5 - Acord total"
-  ]
-}
+    q: "11. Pentru mine, este esențial ca locuința să aibă un spațiu exterior generos (balcon mare, terasă sau grădină).",
+    a: [
+      "1 - Dezacord total",
+      "2 - Dezacord",
+      "3 - Neutral",
+      "4 - Acord",
+      "5 - Acord total"
+    ]
+  },
+  {
+    q: "12. Îmi doresc să locuiesc într-un cartier liniștit, cu multe spații verzi, chiar dacă asta înseamnă să fiu mai departe de centru.",
+    a: [
+      "1 - Dezacord total",
+      "2 - Dezacord",
+      "3 - Neutral",
+      "4 - Acord",
+      "5 - Acord total"
+    ]
+  },
+  {
+    q: "13. Parcarea, izolația fonică excelentă și spațiile mari de depozitare sunt condiții obligatorii pentru mine.",
+    a: [
+      "1 - Dezacord total",
+      "2 - Dezacord",
+      "3 - Neutral",
+      "4 - Acord",
+      "5 - Acord total"
+    ]
+  },
+  {
+    q: "14. Visul meu este să locuiesc într-un apartament modern, cu design deschis (open-space) și multă lumină naturală.",
+    a: [
+      "1 - Dezacord total",
+      "2 - Dezacord",
+      "3 - Neutral",
+      "4 - Acord",
+      "5 - Acord total"
+    ]
+  },
+  {
+    q: "15. Aș face compromisuri la suprafața totală a casei pentru a avea o curte privată sau o grădină.",
+    a: [
+      "1 - Dezacord total",
+      "2 - Dezacord",
+      "3 - Neutral",
+      "4 - Acord",
+      "5 - Acord total"
+    ]
+  },
 ]; 
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("questions");
