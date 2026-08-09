@@ -190,9 +190,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const payload = {
-        email: email,
-        answers: answers
-      };
+    email: email,
+    phone: document.getElementById('userPhone').value,
+    answers: answers
+};
 
       // Trimitere date catre MakeWebhook
       fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v", {
