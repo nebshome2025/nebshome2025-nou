@@ -180,6 +180,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      const gdprCheckbox = document.getElementById('gdprConsent');
+    if (!gdprCheckbox.checked) {
+        alert("Pentru a primi rezultatul, consimțământul privind prelucrarea datelor este obligatoriu.");
+        return; 
+    }
 
       const email = document.getElementById("userEmail").value;
       const answers = {};
