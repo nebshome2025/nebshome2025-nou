@@ -193,12 +193,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const selected = document.querySelector(`input[name="q${index + 1}"]:checked`);
         answers[`q${index + 1}`] = selected ? selected.value : "";
       });
+const urlParams = new URLSearchParams(window.location.search);
+    const emailDestinatar = urlParams.get('agent') || 'nebs777@yandex.com';
 
-      const payload = {
-    email: email,
-    phone: document.getElementById('userPhone').value,
-    answers: answers
-};
+    const payload = {
+        email: email,
+        phone: document.getElementById('userPhone').value,
+        answers: answers,
+        email_agent: emailDestinatar
+    };
+    
 
       // Trimitere date catre MakeWebhook
       fetch("https://hook.eu2.make.com/a6qpye9nylq8ny9dym7q2xy8w8g85b9v", {
